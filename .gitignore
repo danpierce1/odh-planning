@@ -9,3 +9,5 @@ exports/
 *.swp
 *~
 
+# below follows advice that speckit init command mentions: Consider adding .claude/ (or parts of it) to .gitignore to prevent accidental credential leakage. 
+.claude
