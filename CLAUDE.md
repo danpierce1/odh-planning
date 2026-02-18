@@ -382,7 +382,11 @@ Additional labels to apply as relevant:
 
 ### Components
 
-Set the appropriate component(s) for the area of work. Components help with filtering and assignment routing.
+All Epics and child Stories/Tasks MUST include these components:
+- `AI Core Dashboard`
+- `Gen AI Studio`
+
+Additional components may be added as relevant for the specific area of work.
 
 ### Issue Hierarchy and Linking
 
