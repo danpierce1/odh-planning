@@ -364,3 +364,114 @@ The user may use these commands at any time:
 - `constitution` - Display relevant constitution principles
 - `teams` - Show team ownership reference
 - `personas` - Display target persona summaries
+
+## JIRA Ticket Creation Guidelines (Optional)
+
+When creating JIRA tickets for this project, follow these standards based on the RHOAIENG project patterns (e.g., RHOAIENG-47881).
+
+### Labels
+
+All tickets MUST include the appropriate scrum team label:
+- `dashboard-crimson-scrum` - For Crimson scrum team work
+
+Additional labels to apply as relevant:
+- `must-do` - For critical/required work
+- `needs-documentation` - When documentation is required
+- `tech-reviewed` - After technical review is complete
+- `<version>-candidate` (e.g., `3.4-candidate`) - Target release version
+
+### Components
+
+Set the appropriate component(s) for the area of work. Components help with filtering and assignment routing.
+
+### Issue Hierarchy and Linking
+
+Follow this hierarchy for organizing work:
+
+```
+STRAT (Feature) - RHAISTRAT project
+    └── Epic - RHOAIENG project (linked via Parent Link)
+            └── Story/Task - RHOAIENG project (linked via Epic Link)
+```
+
+#### Creating a STRAT-linked Epic
+
+1. **Issue Type**: Epic
+2. **Parent Link**: Link to the parent RHAISTRAT feature ticket
+3. **Epic Name**: Short identifier for the epic (e.g., "mlflow-go sdk")
+4. **Priority**: Set appropriately (Critical, Major, Minor, etc.)
+5. **Labels**: Include scrum team label at minimum
+
+#### Creating Stories/Tasks under an Epic
+
+1. **Issue Type**: Story or Task
+2. **Epic Link**: Link to the parent Epic
+3. **Labels**: Inherit scrum team label from parent Epic
+
+#### Issue Links
+
+Use issue links to show dependencies between tickets:
+- **Blocks/Is blocked by**: For dependency relationships between epics or tasks
+- **Parent Link**: To connect Epics to STRAT features
+
+### Description Standards
+
+#### For Epics
+
+Include the following in Epic descriptions:
+
+1. **Goal/Objective**: Clear statement of what will be delivered
+2. **Scope**: What is included (and optionally what is excluded)
+3. **Technical Details**: Key technical information such as:
+   - Target technologies/frameworks
+   - API compatibility requirements
+   - Testing requirements (unit, integration)
+4. **Repository Link**: Link to the relevant repository if applicable
+
+Example structure:
+```
+[Goal statement - what will be delivered]
+
+[Technical scope and requirements]
+
+Repository: [link to repo]
+```
+
+#### For STRAT Features
+
+STRAT tickets should include comprehensive details:
+
+1. **Problem Statement**: Why this work is needed
+2. **Goal**: What success looks like
+3. **Scope (MVP)**: What's in and out of scope
+4. **User Experience Overview**: How users will interact
+5. **Use Cases**: Numbered list of user scenarios
+6. **Functional Requirements**: Grouped by category
+7. **Non-Functional Requirements**: Performance, compatibility, etc.
+8. **Acceptance Criteria**: Measurable success conditions
+9. **Dependencies**: Links to dependent work
+10. **Notes/Future Considerations**: Out-of-scope items for future
+
+### Workflow States
+
+1. **New**: Initial state when created
+2. **In Progress**: Work has started
+3. **Complete**: Work is done
+
+### Activity Type
+
+Set the Activity Type field appropriately:
+- `New Features` - For new functionality
+- (Other values as appropriate for bug fixes, improvements, etc.)
+
+### Example: Creating an Epic for a STRAT
+
+When asked to create an Epic for a STRAT feature:
+
+1. Create the Epic in RHOAIENG project
+2. Set Parent Link to the RHAISTRAT ticket
+3. Add scrum team label (e.g., `dashboard-crimson-scrum`)
+4. Set Epic Name
+5. Write description with goal, scope, and technical details
+6. Create child Stories/Tasks as needed with Epic Link
+7. Add blocking relationships to related Epics if applicable
