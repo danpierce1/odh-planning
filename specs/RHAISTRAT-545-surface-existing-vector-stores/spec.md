@@ -11,22 +11,25 @@ This feature enables platform engineers to register pre-existing vector database
 
 ## Epics
 
-### Epic 1: Feature Flag(s) for External Vector Stores (Priority: P1, Owner: Dashboard/gen-ai)
+### Epic 1: Feature Flag for External Vector Stores (Priority: P1, Owner: Dashboard/gen-ai)
 
-Control availability of the external vector store feature through configurable feature flag(s) in the platform configuration, enabling safe progressive rollout and administrative control over vector store access.
+Control availability of the external vector store feature through a feature flag in the platform configuration, enabling safe progressive rollout and administrative control over vector store access.
 
 **User Value**: Platform administrators can progressively enable external vector store capabilities, ensuring the feature is only exposed to users when infrastructure is ready and approved, reducing rollout risk.
 
 **Technical Considerations**:
-- [NEEDS CLARIFICATION: Should this use a single feature flag (enable/disable the entire vector store feature) or two separate flags — one controlling UI visibility and one controlling external vector store access — similar to the visibility/external-provider pattern used for external model endpoints strat?]
+- The feature flag can be added to the OdhDashboardConfig CR. It will control whether the external vector stores are visible in the UI. If flag is set to true, show the feature in UI, otherwise (flag set to false or not present) it should be hidden.
 - Flag state must be evaluated before rendering any external vector store UI components
-- Documentation must explain the purpose of feature flags, activation steps, and security considerations
+- Documentation must explain the purpose of the feature flag and enablement steps.
 
 **Outcomes by Persona**:
-TBD
 
-**Success Criteria**:
-TBD
+_Platform Engineer_:
+- Can enable the feature flag so the external vector stores appear in the UI. The feature is hidden if flag is missing or false.
+- Can find documentation that explains the flag and how to enable/disable it
+
+_AI Engineer_:
+- Sees the external vector stores in UI only when the platform has enabled the flag
 
 ---
 
