@@ -52,14 +52,18 @@ Platform engineers will be responsible for creating the "gen-ai-aa-vector-stores
 - Optional Metadata fields: description, owner, domain, name
 
 **Needs clarification**:
-- Use yaml fields or JSON blob for the ConfigMap vector store configuration? The configmap created by platform engineer will use a yaml configuration, listing the vector stores under a "stores.yaml", see https://gist.github.com/ederign/edf4edf4f3aff8b0092c0799eac72bb8
-- All external vector stores defined under single ConfigMap? Yes
-- ConfigMap is scoped to a single namespace? Yes
-- All users in namespace can select and use any vector store.
-- Vector store credentials storage: How are credentials managed?
-  - platform engineer creates Secret, and references in ConfigMap (namespace-scoped)?
-- When should the vector store connections be validated? On load of playground for this strat. (in future likely also when user adds from the AAE page)
-- What providers to test/support for MVP? (Milvus, stretch for PGVector, Qdrant)
+- Q: Use yaml fields or JSON blob for the ConfigMap vector store configuration?
+  A: The configmap created by platform engineer will use a yaml configuration, listing the vector stores under a "stores.yaml", see https://gist.github.com/ederign/edf4edf4f3aff8b0092c0799eac72bb8
+- Q: All external vector stores defined under single ConfigMap?
+  A: Yes
+- Q: ConfigMap is scoped to a single namespace?
+  A: Yes
+- Q: All users in namespace can select and use any vector store.
+- Q: Vector store credentials storage: How are credentials managed?
+  A: platform engineer creates Secret, and references in ConfigMap (namespace-scoped)?
+- Q: When should the vector store connections be validated? On load of playground for this strat. (in future likely also when user adds from the AAE page)
+- Q: What providers to test/support for MVP?
+  A: Aim for Milvus, PGVector, Qdrant
 
 **Outcomes by Persona**:
 
