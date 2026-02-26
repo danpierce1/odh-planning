@@ -4,7 +4,17 @@ Planning and specification repository for OpenShift Data Hub (ODH) features, wit
 
 ## Purpose
 
-This repository provides a structured approach to feature planning using the `.specify` framework. It contains detailed specifications, implementation plans, and cross-team coordination materials for ODH features.
+This repository provides a structured approach to feature specification using the `.specify` framework. Specifications feed directly into team refinement sessions for manual breakdown and sprint planning.
+
+## Workflow
+
+```
+Strategic Input → /speckit.specify → spec.md → Refinement Session → Sprint
+```
+
+- **`spec.md`** is the terminal artifact — no separate planning or task generation phase
+- Specifications are immutable after creation; work tracking happens in external systems (Jira, etc.)
+- One spec per strategic input; may contain multiple epics across sprints/teams
 
 ## Repository Structure
 
@@ -15,26 +25,19 @@ specs/
 └── 003-playground-prompt-lab/   # Feature: Prompt lab functionality
 ```
 
-Each feature specification includes:
-- **spec.md** - Detailed feature specification
-- **plan.md** - Implementation plan and approach
-- **checklists/** - Requirements and acceptance criteria
-- **coordination/** - Executive summaries and team briefs
-- **contracts/** - API contracts and dependencies
+Each feature folder contains:
+- **spec.md** - Feature specification with epics, dependencies, edge cases, and potential spikes (required)
+- **checklists/** - Requirements and acceptance criteria (optional)
+- **contracts/** - API contracts and dependencies (optional)
+- **coordination/** - Executive summaries and team briefs (optional)
 
-## Getting Started
-> see https://github.com/github/spec-kit
-### Templates
+## Constitution
 
-Specification templates are available in `.specify/templates/`:
-- `spec-template.md` - Feature specification structure
-- `plan-template.md` - Implementation planning format
-- `tasks-template.md` - Task breakdown template
-- `checklist-template.md` - Requirements checklist
-
-### Constitution
-
-The planning framework follows the [Crimson Dashboard Constitution](.specify/memory/constitution.md), which defines personas, principles, and workflows for feature planning.
+The planning framework follows the [Crimson Dashboard Constitution](.specify/memory/constitution.md), which defines:
+- Target personas (Data Scientist, AI Engineer, ML Ops Engineer, Platform Engineer)
+- Core principles for specification and development
+- Epic structure and cross-team coordination requirements
+- Team ownership reference (from [odh-dashboard OWNERS](https://github.com/opendatahub-io/odh-dashboard))
 
 ## Contributing
 
