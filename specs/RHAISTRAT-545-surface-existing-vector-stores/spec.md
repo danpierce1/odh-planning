@@ -11,30 +11,54 @@ This feature enables platform engineers to register pre-existing vector database
 
 ## Epics
 
-### Epic 1: External Vector Store configuration/loading (Priority: P1, Owner: Dashboard/gen-ai)
+### Epic 1: Feature Flag(s) for External Vector Stores (Priority: P1, Owner: Dashboard/gen-ai)
 
-Enable platform engineers to register existing vector stores via ConfigMaps, making them discoverable in the Playground.
+Control availability of the external vector store feature through configurable feature flag(s) in the platform configuration, enabling safe progressive rollout and administrative control over vector store access.
 
-**User Value**: Platform teams control which vector stores are available to AI engineers, enabling self-service RAG experimentation with enterprise-approved knowledge sources.
+**User Value**: Platform administrators can progressively enable external vector store capabilities, ensuring the feature is only exposed to users when infrastructure is ready and approved, reducing rollout risk.
 
 **Technical Considerations**:
-- Vector store definitions stored in Kubernetes ConfigMaps (namespace-scoped visibility)
+- [NEEDS CLARIFICATION: Should this use a single feature flag (enable/disable the entire vector store feature) or two separate flags — one controlling UI visibility and one controlling external vector store access — similar to the visibility/external-provider pattern used for external model endpoints strat?]
+- Flag state must be evaluated before rendering any external vector store UI components
+- Documentation must explain the purpose of feature flags, activation steps, and security considerations
+
+**Outcomes by Persona**:
+TBD
+
+**Success Criteria**:
+TBD
+
+---
+
+### Epic 2: External Vector Stores registration during BFF LSD install (Priority: P1, Owner: Dashboard/gen-ai)
+
+Platform engineers will be responsible for creating the "gen-ai-aa-vector-stores" ConfigMap, and this epic will update the Install phase of LSD in our gen-ai BFF in order to check for the presence of the "gen-ai-aa-vector-stores" ConfigMap - if present, we should configure any valid external vector stores to be included in the LSD that gets created (see InstallLlamaStackDistribution and generateLlamaStackConfig functions).
+
+**User Value**: Enabling the loading of external vector stores from a platform engineer created ConfigMap is the required step for surfacing the external vector stores for selection/enablement in the gen ai Playground.
+
+**Technical Considerations**:
+- **Include validation of supplied external vector stores**: 
+- For the install logic we must include some validation steps to check that valid external vector stores have been supplied.
+  Spike what errors llamastack currently responds with for various invalid configurations.
+  Some validations the code should carry out:
+  - Ensure each vector db can be connected to (TBD if llamastack does this when starting up, and what error if so). Some may be supplied with credentials. Return a failure error to UI if invalid configuration.
+  - Ensure the embedding model that each supplied vector store uses will be available (the models are supplied to the Install LSD/Playground step, so cross check what embedding model has been supplied). TBD if llamastack does this when starting up, and what error if so. If the embedding model isn't available, we can skip registering that vector store in LSD install, and allow the install of LSD to complete, then just display the external vector store as greyed out in the UI (with a message to indicate why it can't yet be enabled).
+
+- Vector store definitions stored in namespace-scoped Kubernetes ConfigMaps
 - Single vector store per chat session in 3.4
 - OpenAI-compatible vector database APIs through llama-stack interface
 - ConfigMap changes require llamastack distribution restart to take effect
 - ConfigMap schema must be GitOps friendly for declarative management
 - Optional Metadata fields: description, owner, domain, name
-- mocked bff backend?
-- feature flag?
 
 **Needs clarification**:
-- Use yaml fields or JSON blob for the ConfigMap vector store configuration
-- All external vector stores defined under single ConfigMap?
-- ConfigMap is scoped to a single namespace
+- Use yaml fields or JSON blob for the ConfigMap vector store configuration? The configmap created by platform engineer will use a yaml configuration, listing the vector stores under a "stores.yaml", see https://gist.github.com/ederign/edf4edf4f3aff8b0092c0799eac72bb8
+- All external vector stores defined under single ConfigMap? Yes
+- ConfigMap is scoped to a single namespace? Yes
 - All users in namespace can select and use any vector store.
 - Vector store credentials storage: How are credentials managed?
   - platform engineer creates Secret, and references in ConfigMap (namespace-scoped)?
-- When should the vector store connections be validated? (e.g. on load of playground, on attempt to enable vector store, ...)
+- When should the vector store connections be validated? On load of playground for this strat. (in future likely also when user adds from the AAE page)
 - What providers to test/support for MVP? (Milvus, stretch for PGVector, Qdrant)
 
 **Outcomes by Persona**:
@@ -53,21 +77,25 @@ _AI Engineer_:
 
 ---
 
-### Epic 2: External vector stores usable in playground (Priority: P1, Owner: Dashboard/gen-ai)
+### Epic 3: An external vector store can be enabled for chat session in UI (Priority: P1, Owner: Dashboard/gen-ai)
 
-Enable AI engineers in the GenAI playground to select an external vector store and chat against it.
+Enable AI engineers in the GenAI playground to enable an external vector store for a chat session from the Knowledge tab.
 
 **User Value**: Engineers can rapidly prototype and evaluate RAG applications using enterprise-approved knowledge sources without writing code, managing connections, or understanding retrieval implementation details.
 
 **Technical Considerations**:
+- User can enable only one vector store at a time per chat pane (whether inline/external)
+- User can see, but cannot enable, a vector store which does not have the associated embedding model available
+- If a user opens multiple chat comparison panes, replicate the vector store settings across the panes (vector store id)
+- Show error if external vector stores related misconfiguration issue arises on creation of playground (Install of LSD)
+- See clear error message if vector store is unreachable
+- User can only see and enable external vector stores if feature flag enabled
 - Retrieval implementation details (chunk size, embedding model, similarity thresholds) hidden from users
 - Read-only operations (query and retrieval only, no write access to vector stores)
 - Chat session state includes enabled vector store reference
 
-**Needs Clarification**:
-- Playground currently supports one inline vector store across all panes. For external vector stores MVP, will we support one or multiple vector stores across panes?
-- Whats the behaviour when opening multiple chat comparisons?
-  - If a user selects an external vector store, and opens another chat comparison pane, should the new pane point to the same knowledge source(s), have no vector store selected, or something else.
+**Out of scope**:
+- Table to display external vector stores on AAE page (UX in progress) - after 3.4
 
 **Outcomes by Persona**:
 
@@ -76,36 +104,6 @@ _AI Engineer_:
 - Compare model responses with and without vector stores to evaluate RAG quality
 - Disable vector store mid-session to test non-RAG behavior
 - Chat against pre-ingested product documentation to test customer support scenarios
-
----
-
-### Epic 3: Error Handling and Observability (Priority: P1, Owner: Dashboard/gen-ai)
-
-Provide clear, actionable error messages when vector stores are unreachable or misconfigured, guiding users toward resolution without requiring deep technical knowledge.
-
-**User Value**: Engineers can quickly identify and escalate configuration issues instead of debugging connection problems, while platform engineers receive clear signals about infrastructure health before users are impacted.
-
-**Technical Considerations**:
-- Distinguish between connection errors, misconfiguration errors, and empty result sets
-- Connection validation timing determines UX (eager vs. lazy validation)
-- Error messages must guide users to appropriate next steps (retry, contact platform team, choose different store)
-- Health status indicators for vector stores (available, unreachable, misconfigured)
-
-**Outcomes by Persona**:
-
-_AI Engineer_:
-- See clear error message when vector store is unreachable
-- See which vector stores are currently available vs. unavailable
-- Receive user-friendly error message (not stack trace) when queries fail
-- Distinguish infrastructure issues from query problems
-
-_Platform Engineer_:
-- Be notified when vector store ConfigMap has invalid connection details
-- Fix configuration issues before users encounter errors
-- Understand validation failures during ConfigMap registration
-
-**Needs clarification**
-- Input on error messages/scenarios to handle
 
 ---
 
@@ -141,8 +139,7 @@ _Platform Engineer_:
 - **SC-004**: Users receive clear, actionable error messages when vector stores are unreachable, distinguishing infrastructure issues from query problems
 - **SC-005**: ConfigMaps are portable and auditable, allowing platform teams to manage vector store access through GitOps workflows
 - **SC-006**: Engineers can compare RAG-enabled vs. non-RAG responses by toggling vector store enablement within the same chat session
-- **SC-007**: Total response time for RAG queries is under 3 seconds for typical queries
-- **SC-008**: Vector store selection behaves similarly to MCP tool selection (RHOAI 3.0), maintaining UI consistency
+- **SC-007**: Vector store selection behaves similarly to MCP tool selection (RHOAI 3.0), maintaining UI consistency
 
 ## Cross-Team Dependencies
 
@@ -166,7 +163,6 @@ _Platform Engineer_:
 
 - Organizations already have existing vector databases populated through external pipelines, CLIs, or CI/CD systems
 - Platform engineers have Kubernetes permissions to create and manage ConfigMaps and Secrets in relevant namespaces
-- Vector databases are network-reachable from the Playground backend services with reasonable latency (<500ms)
 - llama-stack RAG primitives provide a consistent interface across PGVector, Qdrant, and Milvus backends
 - Vector stores contain pre-computed embeddings and do not require re-indexing or chunking during query time
 - Single vector store per chat session is sufficient for initial release (multi-store retrieval deferred to post-3.4)
@@ -188,3 +184,4 @@ The following capabilities are explicitly excluded from RHOAI 3.4 and documented
 - **Observability and retrieval diagnostics**: No detailed metrics or tracing for retrieval operations
 - **Automatic ConfigMap reload**: ConfigMap changes require manual llamastack distribution restart
 - **Hot-reload of vector store configurations**: No dynamic configuration updates without restart
+- **Table of vector stores in AAE tab**: Users can view external vector stores only under the Knowledge tab in 3.4
