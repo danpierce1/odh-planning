@@ -93,9 +93,7 @@ Enable AI engineers in the GenAI playground to enable an external vector store f
 **Technical Considerations**:
 - User can enable only one vector store at a time per chat pane (whether inline/external)
 - User can see, but cannot enable, a vector store which does not have the associated embedding model available
-- If a user opens multiple chat comparison panes, replicate the vector store settings across the panes (vector store id)
-- Show error if external vector stores related misconfiguration issue arises on creation of playground (Install of LSD)
-- See clear error message if vector store is unreachable
+- If a user opens multiple chat comparison panes, when a new pane is opened the vector store selection is replicated to it by default; after that each pane's selection is independent
 - User can only see and enable external vector stores if feature flag enabled
 - Retrieval implementation details (chunk size, embedding model, similarity thresholds) hidden from users
 - Read-only operations (query and retrieval only, no write access to vector stores)
@@ -111,7 +109,26 @@ _AI Engineer_:
 
 ---
 
-### Epic 4: Add external vector stores flow to AI Asset Endpoints (AAE) page in UI (Priority: P1, Owner: Dashboard/gen-ai)
+### Epic 4: Surface Vector Store Errors in the Playground UI (Priority: P1, Owner: Dashboard/gen-ai)
+
+Ensure AI engineers see clear, actionable error messages when external vector stores cause problems — whether at Playground creation time due to misconfiguration, or during an active chat session when a vector store becomes unreachable. Errors must be distinguishable from model errors or general query failures.
+
+**User Value**: Engineers can quickly identify vector store issues and report them to their Platform Engineer, rather than encountering opaque failures.
+
+**Technical Considerations**:
+- If a vector store misconfiguration causes LSD install to fail, surface a specific error identifying the vector store issue (not a generic Playground creation failure)
+- If a vector store becomes unreachable during an active chat session, surface a distinct error message separate from model or query errors
+- Error messages should be actionable — give users enough detail to relay to a Platform Engineer
+
+**Outcomes by Persona**:
+
+_AI Engineer_:
+- Sees a specific error message identifying the vector store issue when Playground creation fails due to a misconfigured store
+- Sees a clear, actionable error during chat when a vector store is unreachable, distinct from model or query errors
+
+---
+
+### Epic 5: Add external vector stores flow to AI Asset Endpoints (AAE) page in UI (Priority: P1, Owner: Dashboard/gen-ai)
 
 Similar to the existing Add a model flow in AAE, we want to add support for viewing external vector stores in AAE and being able to select one or more external vector stores to be included when creating a new playground via an Add to Playground link (again similar to Add a model).
 
