@@ -2,16 +2,17 @@
 
 ## Jira Fields
 
-| Field         | Value                                                                                          |
-|---------------|------------------------------------------------------------------------------------------------|
-| Issue Type    | Story                                                                                          |
-| Summary       | Add to Playground Flow — Select and Launch a Playground with Vector Stores from AAE            |
-| Priority      | Normal                                                                                         |
-| Project       | RHOAIENG                                                                                       |
-| Components    | AI Core Dashboard, Gen AI Studio                                                               |
-| Labels        | dashboard-crimson-scrum                                                                        |
-| Activity Type | New Features                                                                                   |
-| Epic Link     | [RHOAIENG-XXXXX — set once Epic is created in Jira]                                            |
+| Field          | Value                                                                                          |
+|----------------|------------------------------------------------------------------------------------------------|
+| Issue Type     | Story                                                                                          |
+| Summary        | Add to Playground Flow — Select and Launch a Playground with Vector Stores from AAE            |
+| Priority       | Normal                                                                                         |
+| Project        | RHOAIENG                                                                                       |
+| Components     | AI Core Dashboard, Gen AI Studio                                                               |
+| Labels         | dashboard-crimson-scrum                                                                        |
+| Activity Type  | New Features                                                                                   |
+| Target Version | rhoai-3.4                                                                                      |
+| Epic Link      | [RHOAIENG-XXXXX — set once Epic is created in Jira]                                            |
 
 ---
 

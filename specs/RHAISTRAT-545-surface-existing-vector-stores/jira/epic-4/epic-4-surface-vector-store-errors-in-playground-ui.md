@@ -2,16 +2,17 @@
 
 ## Jira Fields
 
-| Field         | Value                                                                              |
-|---------------|------------------------------------------------------------------------------------|
-| Issue Type    | Epic                                                                               |
-| Summary       | Surface Vector Store Errors in the Playground UI                                   |
-| Epic Name     | Surface Vector Store Errors in the Playground UI                                   |
-| Priority      | Major                                                                              |
-| Project       | RHOAIENG                                                                           |
-| Components    | AI Core Dashboard, Gen AI Studio                                                   |
-| Labels        | dashboard-crimson-scrum                                                            |
-| Activity Type | New Features                                                                       |
+| Field          | Value                                                                              |
+|----------------|------------------------------------------------------------------------------------|
+| Issue Type     | Epic                                                                               |
+| Summary        | Surface Vector Store Errors in the Playground UI                                   |
+| Epic Name      | Surface Vector Store Errors in the Playground UI                                   |
+| Priority       | Major                                                                              |
+| Project        | RHOAIENG                                                                           |
+| Components     | AI Core Dashboard, Gen AI Studio                                                   |
+| Labels         | dashboard-crimson-scrum                                                            |
+| Activity Type  | New Features                                                                       |
+| Target Version | rhoai-3.4                                                                          |
 
 ---
 

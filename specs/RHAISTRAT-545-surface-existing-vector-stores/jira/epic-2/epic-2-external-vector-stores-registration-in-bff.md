@@ -2,16 +2,17 @@
 
 ## Jira Fields
 
-| Field         | Value                                                                              |
-|---------------|------------------------------------------------------------------------------------|
-| Issue Type    | Epic                                                                               |
-| Summary       | External Vector Stores Registration During BFF LSD Install                         |
-| Epic Name     | External Vector Stores Registration During BFF LSD Install                         |
-| Priority      | Major                                                                              |
-| Project       | RHOAIENG                                                                           |
-| Components    | AI Core Dashboard, Gen AI Studio                                                   |
-| Labels        | dashboard-crimson-scrum                                                            |
-| Activity Type | New Features                                                                       |
+| Field          | Value                                                                              |
+|----------------|------------------------------------------------------------------------------------|
+| Issue Type     | Epic                                                                               |
+| Summary        | External Vector Stores Registration During BFF LSD Install                         |
+| Epic Name      | External Vector Stores Registration During BFF LSD Install                         |
+| Priority       | Major                                                                              |
+| Project        | RHOAIENG                                                                           |
+| Components     | AI Core Dashboard, Gen AI Studio                                                   |
+| Labels         | dashboard-crimson-scrum                                                            |
+| Activity Type  | New Features                                                                       |
+| Target Version | rhoai-3.4                                                                          |
 
 ---
 

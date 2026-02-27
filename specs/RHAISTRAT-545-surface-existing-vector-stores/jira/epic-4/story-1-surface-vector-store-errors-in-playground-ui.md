@@ -10,8 +10,9 @@
 | Project       | RHOAIENG                                                                                   |
 | Components    | AI Core Dashboard, Gen AI Studio                                                           |
 | Labels        | dashboard-crimson-scrum                                                                    |
-| Activity Type | New Features                                                                               |
-| Epic Link     | [RHOAIENG-XXXXX — set once Epic is created in Jira]                                        |
+| Activity Type  | New Features                                                                               |
+| Target Version | rhoai-3.4                                                                                  |
+| Epic Link      | [RHOAIENG-XXXXX — set once Epic is created in Jira]                                        |
 
 ---
 
