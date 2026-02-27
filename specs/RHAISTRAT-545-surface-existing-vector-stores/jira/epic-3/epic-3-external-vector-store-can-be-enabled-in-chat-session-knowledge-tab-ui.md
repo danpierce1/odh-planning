@@ -27,15 +27,15 @@ AI Engineer:
 - Can see all available external vector stores in the Knowledge tab, including those that are unavailable due to a missing embedding model (shown greyed out).
 - Can enable a vector store for a chat session with a single click and disable it mid-session.
 - Can compare model responses with and without a vector store by toggling enablement.
-- Sees clear, actionable error messages when vector stores are misconfigured or unreachable.
-- When using multiple chat comparison panes, the same vector store selection is replicated across all panes.
+- When a new comparison pane is opened, the current vector store selection is replicated to it by default; each pane can then be managed independently.
 
 ## Acceptance Criteria
 
 - [ ] External vector stores are listed in the Playground Knowledge tab when the feature flag is enabled.
 - [ ] Stores without an available embedding model are visible but greyed out with an explanatory message.
 - [ ] User can enable and disable a single vector store per chat pane.
-- [ ] Vector store selection is replicated across multiple chat comparison panes.
+- [ ] Vector store selection is replicated to new comparison panes by default; each pane can then be managed independently.
+
 ## Stories
 
 - Story 1: Enable External Vector Stores in the Playground Knowledge Tab
