@@ -101,9 +101,6 @@ Enable AI engineers in the GenAI playground to enable an external vector store f
 - Read-only operations (query and retrieval only, no write access to vector stores)
 - Chat session state includes enabled vector store reference
 
-**Out of scope**:
-- Table to display external vector stores on AAE page (UX in progress) - after 3.4
-
 **Outcomes by Persona**:
 
 _AI Engineer_:
@@ -111,6 +108,23 @@ _AI Engineer_:
 - Compare model responses with and without vector stores to evaluate RAG quality
 - Disable vector store mid-session to test non-RAG behavior
 - Chat against pre-ingested product documentation to test customer support scenarios
+
+---
+
+### Epic 4: Add external vector stores flow to AI Asset Endpoints (AAE) page in UI (Priority: P1, Owner: Dashboard/gen-ai)
+
+Similar to the existing Add a model flow in AAE, we want to add support for viewing external vector stores in AAE and being able to select one or more external vector stores to be included when creating a new playground via an Add to Playground link (again similar to Add a model).
+
+**User Value**: Engineers can view external vector stores in more detail, and can select vector stores to be included when creating a new playground.
+
+**Technical Considerations**:
+- Feature should only be visible if feature flag enabled
+- External vector stores should be visible under a Vector Stores tab in AAE page. For each vector store, we can display columns: Vector store, Provider, Embedding model, Domain, Status (referencing figma at https://www.figma.com/design/0KwA2EuFmA48GAQAOyjbIb/3.4-Playground?node-id=1419-6335&t=u9oLDgOyt8i0NEwO-0)
+- If user clicks Add to Playground, the existing Configure Playground modal will open, this modal should be updated to include a Knowledge sources section with a list of selectable vector stores for inclusion in the new playground. User can select from both the Available models and the vector stores lists in this modal, for inclusion in the new Playground to be created.
+- Clicking Add to Playground will pass the selection of vector stores to our create playground backend, Epic 2 "External Vector Stores registration during BFF LSD install" should add changes to the install phase of that backend such that the passed vector stores get registered in the new playground.
+- Clicking Add to Playground will not register any new external vector stores in the "gen-ai-aa-vector-stores" ConfigMap. Instead that ConfigMap is used as a reference for what external vector stores can be viewed/selected, but we don't change it, only the Platform Engineer is responsible for adding/modifying that ConfigMap manually.
+
+**Dependency on PM/UX for approval**: this Epic is a "late add" to this strat, and the details are being fleshed out after the strat refinement session (due to it not having been included in the initial strat outline/description). It has not yet been reviewed/approved by PM/Design, so details may yet change.
 
 ---
 
@@ -191,4 +205,3 @@ The following capabilities are explicitly excluded from RHOAI 3.4 and documented
 - **Observability and retrieval diagnostics**: No detailed metrics or tracing for retrieval operations
 - **Automatic ConfigMap reload**: ConfigMap changes require manual llamastack distribution restart
 - **Hot-reload of vector store configurations**: No dynamic configuration updates without restart
-- **Table of vector stores in AAE tab**: Users can view external vector stores only under the Knowledge tab in 3.4
