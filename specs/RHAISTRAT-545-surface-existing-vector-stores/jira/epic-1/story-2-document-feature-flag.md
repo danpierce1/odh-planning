@@ -27,8 +27,3 @@ Target audience: Platform Engineers comfortable with Kubernetes/OpenShift but no
 ## Acceptance Criteria
 
 - [ ] Ensure documentation team is informed of the new flag and it's purpose (assumpting they will handle actually documenting the field)
-
-## Notes
-
-- Cross-reference with Epic 2 (ConfigMap setup) and Epic 3 (Playground UI) so engineers understand the full enablement journey.
-- Confirm the exact field name with the engineering team once Story 1 is complete before finalising the YAML example.
