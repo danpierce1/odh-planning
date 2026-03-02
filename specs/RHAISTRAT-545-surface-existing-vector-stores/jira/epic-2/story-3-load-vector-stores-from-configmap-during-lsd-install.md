@@ -27,9 +27,9 @@ This story updates the BFF Install phase (InstallLlamaStackDistribution and gene
 - [ ] During LSD install, the BFF checks for the gen-ai-aa-vector-stores ConfigMap in the target namespace.
 - [ ] If the ConfigMap is present, all parseable vector store entries from stores.yaml are passed to the llamastack configuration.
 - [ ] If the ConfigMap is absent, LSD install proceeds as normal with no vector stores — no error is raised.
-- [ ] Malformed individual entries are skipped with a warning; they do not block the install of other valid stores.
+- [ ] Invalid entries should cause a failure (with useful error information for UI)
 
 ## Notes
 
-- Depends on Story 1 (ConfigMap schema) and Story 2 (spike findings) being complete - although use discretion w.r.t timing of work (may be able to do in parallel)
+- Depends on Story 1 (ConfigMap schema) and Story 2 (spike findings) - although use discretion w.r.t timing of work (may be able to do in parallel)
 - Validation of connectivity and embedding model availability is handled in Stories 4 and 5 respectively.

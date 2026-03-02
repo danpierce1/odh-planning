@@ -22,7 +22,7 @@ As an AI Engineer, I want to see a clear error message when a vector store canno
 
 During LSD install, the BFF validates that each vector store defined in the ConfigMap is reachable. If a vector store has a Secret reference for credentials, those credentials are resolved before attempting the connection check. If a store is unreachable or misconfigured, a failure error is returned to the UI.
 
-Implementation approach should be informed by the spike findings (Story 2).
+Implementation approach may be informed by the spike findings (Story 2).
 
 ## Acceptance Criteria
 
