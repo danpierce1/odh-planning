@@ -13,6 +13,7 @@
 | Labels         | dashboard-crimson-scrum                                                            |
 | Activity Type  | New Features                                                                       |
 | Target Version | rhoai-3.4                                                                          |
+| Jira Issue     | https://issues.redhat.com/browse/RHOAIENG-51472                                    |
 
 ---
 
