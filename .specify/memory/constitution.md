@@ -719,7 +719,7 @@ When creating Jira issues from `.md` files under a spec's `jira/` folder, Claude
 |----------------------|----------------------|------------------------------------|
 | Epic Link            | customfield_12311140 | String: `"RHOAIENG-XXXXX"`         |
 | Target Version       | customfield_12319940 | Array: `[{"name": "rhoai-3.4"}]`   |
-| Activity Type        | customfield_12320040 | ⚠️ Not settable via API — set manually in UI after creation |
+| Activity Type        | customfield_12320040 | Object: `{"id": "XXXXX"}` — known IDs: `52756` = Tech Debt & Quality, `52757` = New Features, `52758` = Learning & Enablement |
 | Priority             | priority             | Object: `{"name": "Major"}`        |
 | Labels               | labels               | Array: `["label-name"]`            |
 | Components           | components           | Comma-separated string (MCP handles mapping) |
@@ -733,12 +733,11 @@ When creating Jira issues from `.md` files under a spec's `jira/` folder, Claude
 **Creation rules for Stories:**
 - Use `jira_create_issue` with `issue_type: "Story"`
 - Include `customfield_12311140` (Epic Link) in `additional_fields` to link to the parent epic
-- Include `customfield_12319940` (Target Version) in `additional_fields`
+- Include `customfield_12319940` (Target Version) and `customfield_12320040` (Activity Type) in `additional_fields`
 - Record the created Jira key in the local story `.md` file
 
 **Post-creation:**
 - Record each created Jira key in the local `.md` file (add a `Jira Issue` row to the Jira Fields table)
-- Activity Type must be set manually in the Jira UI — it cannot be set via the API for RHOAIENG issues
 
 **Rationale:** Centralising Jira API field mappings in the constitution avoids repeating technical details across every `.md` file and ensures consistent issue creation regardless of which session performs the work.
 
