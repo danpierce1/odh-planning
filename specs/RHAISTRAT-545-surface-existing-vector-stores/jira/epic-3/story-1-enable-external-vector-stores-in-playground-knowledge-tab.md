@@ -28,7 +28,7 @@ When a new comparison pane is opened, the current vector store selection is repl
 
 - [ ] External vector stores are listed in the Playground Knowledge tab only when the feature flag is enabled.
 - [ ] Each store entry displays its name, provider type (PGVector, Qdrant, Milvus), and description where provided.
-- [ ] Stores with an unavailable embedding model are displayed as greyed out with an explanatory message and cannot be enabled.
+- [ ] Stores with an unavailable embedding model are displayed as greyed out with an explanatory message and cannot be enabled. ⚠️ **Needs confirmation**: an alternative approach of failing Playground creation entirely in this scenario is still under discussion — this AC may change depending on that decision.
 - [ ] User can enable an external vector store with a single click; only one vector store can be active at a time per chat pane (external or inline).
 - [ ] User can disable the active vector store mid-session, reverting to non-RAG behaviour.
 - [ ] The enabled vector store is stored in the chat session state and used for retrieval on subsequent messages.

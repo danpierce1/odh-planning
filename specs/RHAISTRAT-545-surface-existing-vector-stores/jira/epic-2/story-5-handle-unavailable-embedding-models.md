@@ -29,6 +29,6 @@ Implementation approach may be informed by the spike findings (Story 2).
 ## Acceptance Criteria
 
 - [ ] During LSD install, the BFF cross-checks each vector store's required embedding model against the models available in the current install.
-- [ ] If a store's embedding model is unavailable, the store is skipped during LSD registration — it is not registered with llamastack.
-- [ ] LSD install completes successfully even when one or more stores are skipped due to a missing embedding model.
+- [ ] If a store's embedding model is unavailable, the store is skipped during LSD registration — it is not registered with llamastack. ⚠️ **Needs confirmation**: an alternative approach of failing Playground creation entirely in this scenario is still under discussion.
+- [ ] LSD install completes successfully even when one or more stores are skipped due to a missing embedding model. ⚠️ **Needs confirmation**: depends on resolution of above.
 - [ ] The backend response should enable the UI to know which vector stores cannot be enabled due to embedding model not being available (see embedding_model_available field)
