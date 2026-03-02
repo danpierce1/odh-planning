@@ -26,6 +26,8 @@ The gen-ai-aa-vector-stores ConfigMap is used as a read-only reference for what 
 
 **Note**: This epic is a late addition to this strat and has not yet been reviewed or approved by PM/Design. Details may change pending that review.
 
+**Needs clarification**: confirm if external vector store selection should also be included in the Update Configuration modal flow in playground.
+
 **Outcomes by Persona**
 
 AI Engineer:
