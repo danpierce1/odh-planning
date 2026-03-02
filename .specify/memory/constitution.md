@@ -1,6 +1,21 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 3.0.0 → 3.1.0 (MINOR: Added Jira issue creation rules)
+
+Modified principles:
+- Principle XIV (new): Jira Issue Creation from Spec Files
+  - Documents RHOAIENG custom field ID mappings (Epic Link, Target Version, Activity Type)
+  - Defines creation rules for Epics and Stories via Jira MCP
+  - Documents post-creation steps (record key in .md, set Activity Type manually, add RHAISTRAT "Relates to" link)
+
+Rationale:
+- Avoids rediscovering field IDs each session
+- Ensures consistent issue creation across all spec workflows
+==================
+
+PREVIOUS SYNC IMPACT REPORT
+==================
 Version change: 2.5.0 → 3.0.0 (MAJOR: Workflow clarification - spec.md as terminal artifact)
 
 Modified principles:
@@ -694,6 +709,39 @@ All specification, planning, and epic breakdown work MUST be approached from the
 
 **Rationale:** Specifications and plans grounded in the actual codebase are more actionable and lead to consistent implementations. A senior architect perspective ensures recommendations consider the broader system and are practical for the team to execute.
 
+### XIV. Jira Issue Creation from Spec Files
+
+When creating Jira issues from `.md` files under a spec's `jira/` folder, Claude MUST use the Jira MCP and the field mappings below. The "Jira Fields" table in each `.md` file uses human-readable names that map to specific Jira API field IDs.
+
+**Field ID Mappings (RHOAIENG project):**
+
+| Human-Readable Field | Jira API Field       | Format                             |
+|----------------------|----------------------|------------------------------------|
+| Epic Link            | customfield_12311140 | String: `"RHOAIENG-XXXXX"`         |
+| Target Version       | customfield_12319940 | Array: `[{"name": "rhoai-3.4"}]`   |
+| Activity Type        | customfield_12320040 | ⚠️ Not settable via API — set manually in UI after creation |
+| Priority             | priority             | Object: `{"name": "Major"}`        |
+| Labels               | labels               | Array: `["label-name"]`            |
+| Components           | components           | Comma-separated string (MCP handles mapping) |
+
+**Creation rules for Epics:**
+- Use `jira_create_issue` with `issue_type: "Epic"`
+- Include `customfield_12319940` (Target Version) in `additional_fields`
+- After creation, add a "Relates to" link to the parent RHAISTRAT issue using `jira_create_issue_link` with `link_type: "Related"`, `inward_issue_key: <RHOAIENG epic>`, `outward_issue_key: <RHAISTRAT key>`
+- Record the created Jira key in the local epic `.md` file
+
+**Creation rules for Stories:**
+- Use `jira_create_issue` with `issue_type: "Story"`
+- Include `customfield_12311140` (Epic Link) in `additional_fields` to link to the parent epic
+- Include `customfield_12319940` (Target Version) in `additional_fields`
+- Record the created Jira key in the local story `.md` file
+
+**Post-creation:**
+- Record each created Jira key in the local `.md` file (add a `Jira Issue` row to the Jira Fields table)
+- Activity Type must be set manually in the Jira UI — it cannot be set via the API for RHOAIENG issues
+
+**Rationale:** Centralising Jira API field mappings in the constitution avoids repeating technical details across every `.md` file and ensures consistent issue creation regardless of which session performs the work.
+
 ## Development Standards
 
 ### Technology Stack
@@ -775,4 +823,4 @@ This constitution supersedes all other development practices. Amendments require
 - MINOR version: New principles or materially expanded guidance
 - PATCH version: Clarifications, wording improvements, typo fixes
 
-**Version**: 3.0.0 | **Ratified**: 2025-12-19 | **Last Amended**: 2026-01-30
+**Version**: 3.1.0 | **Ratified**: 2025-12-19 | **Last Amended**: 2026-03-02
