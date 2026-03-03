@@ -26,19 +26,18 @@ When a new comparison pane is opened, the current vector store selection is repl
 
 ## Acceptance Criteria
 
-- [ ] External vector stores are listed in the Playground Knowledge tab only when the feature flag is enabled.
+- [ ] Available/registered external vector stores are listed in the Playground Knowledge tab only when the feature flag is enabled.
 - [ ] Each store entry displays its name, provider type (PGVector, Qdrant, Milvus), and description where provided.
-- [ ] Stores with an unavailable embedding model are displayed as greyed out with an explanatory message and cannot be enabled. ⚠️ **Needs confirmation**: an alternative approach of failing Playground creation entirely in this scenario is still under discussion — this AC may change depending on that decision.
 - [ ] User can enable an external vector store with a single click; only one vector store can be active at a time per chat pane (external or inline).
 - [ ] User can disable the active vector store mid-session, reverting to non-RAG behaviour.
 - [ ] The enabled vector store is stored in the chat session state and used for retrieval on subsequent messages.
 - [ ] When a new comparison pane is opened, the current vector store selection is replicated to that pane by default.
 - [ ] After a pane is opened, its vector store selection is independent — the user can enable or disable on one pane without affecting others.
 - [ ] Retrieval implementation details (chunk size, embedding model name, similarity thresholds) are not shown to the user.
+- [ ] Regarding the external vector stores listed in the Playground Knowledge tab, we could optionally show stores which are not registered/available in LSD displayed as greyed out with an explanatory message
 
 ## Notes
 
-- Greyed-out store status comes from the Epic 2 Story 5 backend field (embedding_model_available).
 - Depends on Epic 1 (feature flag) and Epic 2 (BFF ConfigMap loading) being in place.
 - Read-only operations only — no write access to vector store data.
-- Reference Figma designs for visual treatment of the Knowledge tab and store list.
+- Reference designs for visual treatment of the Knowledge tab and store list.
