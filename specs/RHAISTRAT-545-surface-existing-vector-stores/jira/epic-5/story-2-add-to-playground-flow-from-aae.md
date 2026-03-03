@@ -18,17 +18,17 @@
 
 ## Jira Description
 
-As an AI Engineer, I want to click Add to Playground from the AAE Vector Stores tab and configure a Playground with the selected vector store and its associated embedding model, so that I can quickly launch a RAG-enabled Playground without manual configuration.
+As an AI Engineer, I want to click Add to Playground from the AAE Vector Stores tab and configure a Playground with the selected vector store(s) and associated embedding model(s), so that I can quickly launch a RAG-enabled Playground without manual configuration.
 
-When a user clicks Add to Playground for a vector store row, a modal opens showing: the embedding model ID (and name if available) tied to the vector store, whether that embedding model is already available in llamastack (if not, indicate it will be automatically registered), and the selected vector store collection. The user then clicks Configure to proceed, which triggers the LSD install with the vector store and embedding model registered.
+When a user clicks Add to Playground for a vector store row, a modal opens showing the list of vector stores and associated embedding model next to each store. If an embedding model is not added to AI Asset endpoints show the entire row as greyed out. If it is added but not registered, indicate that the backend will auto register it with llamastack. The user then clicks Configure to proceed, which triggers the LSD install with the vector store(s) and models passed.
 
 The gen-ai-aa-vector-stores ConfigMap is not modified by this flow — it is used only as a read-only reference.
 
 ## Acceptance Criteria
 
-- [ ] Clicking Add to Playground from the AAE Vector Stores tab opens a modal showing: the selected vector store collection, the associated embedding model ID and name (if available), and whether the embedding model is already available in llamastack.
+- [ ] Clicking Add to Playground from the AAE Vector Stores tab opens a modal that shows the list of vector stores and associated embedding model next to each store. If an embedding model is not added to AI Asset endpoints show the entire row as greyed out. If it is added but not registered, indicate that the backend will auto register it with llamastack. The user then clicks Configure to proceed, which triggers the LSD install with the vector store(s) and models passed.
 - [ ] If the embedding model is not yet available in llamastack, the modal indicates it will be automatically registered.
-- [ ] The user can proceed by clicking Configure, which triggers Playground creation with the vector store and embedding model registered via the Epic 2 LSD install logic.
+- [ ] The user can proceed by clicking Configure, which triggers the LSD install, using the existing installLSD method call in ChatbotConfigurationModal.tsx, passing the vector store(s) and models in the request (to the LlamaStackDistributionInstallHandler endpoint).
 - [ ] The gen-ai-aa-vector-stores ConfigMap is not modified by this flow.
 
 ## Notes

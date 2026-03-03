@@ -28,7 +28,7 @@ Rows where the associated embedding model is not registered as an AI asset endpo
 
 - [ ] A Vector Stores tab is added to the AAE page, visible only when the feature flag is enabled.
 - [ ] The tab lists all external vector stores from the ConfigMap with columns: Collection, Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance Metric, Created, Endpoint, Playground.
-- [ ] Rows where the associated embedding model is not registered as an AI asset endpoint are shown as greyed out with an explanatory message on how to add the embedding model as an endpoint.
+- [ ] Rows where the associated embedding model is not added as an AI asset endpoint are shown as greyed out with an explanatory message on how to add the embedding model as an endpoint
 - [ ] An Add to Playground action is available for non-greyed-out rows (behaviour implemented in Story 2).
 
 ## Notes

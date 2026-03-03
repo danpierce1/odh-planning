@@ -20,7 +20,7 @@
 
 Similar to the existing Add a model flow in AAE, add support for viewing external vector stores in an AAE page (under a vector stores tab) and selecting one or more to be included when configuring a Playground via an Add to Playground link.
 
-Engineers can view external vector stores in more detail and select them for inclusion when configuring a Playground.
+Engineers can view external vector stores in more detail and select them for inclusion when installing a Playground (can be fresh install or replacing an existing playground, either way both go through the install endpoint, but the latter first runs a delete playground request).
 
 The gen-ai-aa-vector-stores ConfigMap is used as a read-only reference for what external vector stores can be viewed and selected. The ConfigMap is not modified by this flow — only Platform Engineers manage its contents.
 
@@ -32,14 +32,15 @@ The gen-ai-aa-vector-stores ConfigMap is used as a read-only reference for what 
 
 AI Engineer:
 - Can view all external vector stores defined in the gen-ai-aa-vector-stores ConfigMap in the AAE page under vector stores tab. The primary column for the table should be Collection, and we should also have columns for Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance, metric, Created, Endpoint, Playground.
-- For 3.4, a user can click Add to Playground for a vector store collection if the associated embedding model is registered as an AI asset endpoint (if it's not we show the row as greyed out, with details on how to add the embedding model as an endpoint). In the modal that then opens, we show the embedding model id (and name if available) tied to the vector store, and whether it's available yet in llamastack (if not we indicate it will be automatically be registered in llamastack), and we show the vector store collection that the user selected. The user may then proceed with installing the vector store and embedding model in the playground by clicking the Configure button.
+- For 3.4, a user can click Add to Playground for a vector store collection if the associated embedding model is added as an AI asset endpoint (check the list of AI Asset endpoints, if it's not present we show the row as greyed out, with details on how to add the embedding model as an endpoint). In the modal that opens, show the list of vector stores and associated embedding model next to each store. If an embedding model is not added to AI Asset endpoints we also here show the entire row as greyed out. If it is added but not registered, indicate that the we will auto register it with llamastack. The user may then proceed with installing the vector store and embedding model in the playground by clicking the Configure button.
 
 ## Acceptance Criteria
 
 - [ ] External vector stores defined in the gen-ai-aa-vector-stores ConfigMap are visible in the AAE page under a Vector Stores tab, with columns for Collection, Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance, metric, Created, Endpoint, Playground
-- [ ] A user can click Add to Playground for a vector store collection if the associated embedding model is registered as an AI asset endpoint. If it's not, the row is shown as greyed out with details on how to add the embedding model as an endpoint.
-- [ ] In the modal that opens, the embedding model ID (and name if available) tied to the vector store is shown, along with whether it's available yet in llamastack (if not, indicate it will be automatically registered). The selected vector store collection is also shown.
-- [ ] The user can proceed with installing the vector store and embedding model in the Playground by clicking the Configure button.
+- [ ] For 3.4, in order to add Vector stores to a playground, the user must use the Vector Stores tab under AAE page to select the vector stores for the playground.
+- [ ] A user can click Add to Playground for a vector store collection if the associated embedding model is added as an AI asset endpoint. If it's not, the row is shown as greyed out with details on how to add the embedding model as an endpoint.
+- [ ] In the modal that opens, show the list of vector stores and associated embedding model next to each store. If an embedding model is not added to AI Asset endpoints again show the entire row as greyed out. If it is added but not registered, indicate that the backend will auto register it with llamastack.
+- [ ] The user can proceed with installing the vector stores and associated embedding models in the Playground by clicking the Configure button, which triggers Playground install (note we already have logic whereby if playground already exists, the UI first makes request to delete the existing playground) by making a request using the existing installLSD method call in ChatbotConfigurationModal.tsx, passing the vector store(s) and models in the request (to the LlamaStackDistributionInstallHandler endpoint).
 - [ ] The gen-ai-aa-vector-stores ConfigMap is not modified by this flow.
 
 ## Stories

@@ -19,7 +19,7 @@
 
 ## Jira Description
 
-Platform engineers are responsible for creating the gen-ai-aa-vector-stores ConfigMap. This epic updates the Install phase of LSD in the gen-ai BFF to check for the presence of that ConfigMap and, if found, configure any valid external vector stores into the LSD being created (see InstallLlamaStackDistribution and generateLlamaStackConfig functions).
+Platform engineers are responsible for creating the gen-ai-aa-vector-stores ConfigMap. This epic updates the Install phase of LSD in the gen-ai BFF such that if vector stores are supplied in the LlamaStackDistributionInstallRequest (LlamaStackDistributionInstallHandler endpoint), then the bff will read the vector store details from the gen-ai-aa-vector-stores ConfigMap, and configure the vector stores into the LSD being installed (see InstallLlamaStackDistribution and generateLlamaStackConfig functions).
 
 This is the foundational backend work that makes external vector stores available for selection in the Gen AI Playground.
 
@@ -36,7 +36,7 @@ AI Engineer:
 
 ## Acceptance Criteria
 
-- [ ] BFF reads the gen-ai-aa-vector-stores ConfigMap during LSD install and includes valid vector stores in the generated llamastack configuration.
+- [ ] When the user clicks Add to Playground and proceeds with selection of vector stores in the Vector stores Configuration modal in UI, the UI makes a request including the vector stores via LlamaStackDistributionInstallRequest request, the BFF must then check for vector stores in the LlamaStackDistributionInstallRequest request and for each vector store, it must validate vector store details, check if the associated embedding model is registered in llamastack config (if not it must auto register the embedding model(s) in the llamastack config), and register the vector store(s) in the llamastack config.
 - [ ] Vector stores with invalid or unreachable connections or unavailable embedding model cause a failure with error returned to the UI.
 - [ ] ConfigMap schema supports all three MVP providers: PGVector, Qdrant, Milvus.
 - [ ] Credential references via Kubernetes Secrets are supported.

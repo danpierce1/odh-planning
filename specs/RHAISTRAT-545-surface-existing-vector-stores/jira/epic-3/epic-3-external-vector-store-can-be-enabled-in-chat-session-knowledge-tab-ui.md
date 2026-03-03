@@ -33,7 +33,7 @@ AI Engineer:
 ## Acceptance Criteria
 
 - [ ] Available/registered external vector stores are listed in the Playground Knowledge tab when the feature flag is enabled.
-- [ ] User can enable and disable a single vector store per chat pane.
+- [ ] User can enable and disable a single vector store per chat pane (they can only have either an inline or external active at one point, both are treated the same)
 - [ ] Vector store selection is replicated to new comparison panes by default; each pane can then be managed independently.
 
 ## Stories

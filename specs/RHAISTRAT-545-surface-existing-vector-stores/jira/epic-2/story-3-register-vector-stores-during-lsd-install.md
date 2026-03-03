@@ -18,16 +18,17 @@
 
 ## Jira Description
 
-As an AI Engineer, I want the external vector stores defined in a ConfigMap by my Platform Engineer to be automatically included when a new Playground is created, with clear errors surfaced if any stores are misconfigured, unreachable, or missing a required embedding model.
+As an AI Engineer, I want to be able to select vector stores to be made available in a playground, this will be handled by a bff LlamaStackDistributionInstallRequest request to the BFF, with clear errors surfaced if any stores are misconfigured, unreachable, or missing a required embedding model.
 
-This story updates the BFF Install phase (InstallLlamaStackDistribution and generateLlamaStackConfig functions) to check for the presence of the gen-ai-aa-vector-stores ConfigMap in the namespace. If the ConfigMap is found, all valid vector store entries are parsed from stores.yaml, validated, and included in the llamastack distribution configuration.
+This story updates the BFF Install phase (see LlamaStackDistributionInstallHandler, InstallLlamaStackDistribution and generateLlamaStackConfig functions) to allow for LlamaStackDistributionInstallRequest to include vector stores, which if supplied will allow the install logic to configure the vector stores as part of the playground install (and to also register any associated embedding models which are not already registered). If the ConfigMap is found, all valid vector store entries are parsed from stores.yaml, validated, and included in the llamastack distribution configuration.
 
 Implementation approach should be informed by the spike findings (Story 2).
 
 ## Acceptance Criteria
 
-- [ ] During LSD install, the BFF checks for the gen-ai-aa-vector-stores ConfigMap in the target namespace.
-- [ ] If the ConfigMap is absent, LSD install proceeds as normal with no vector stores — no error is raised.
+- [ ] During LSD install, the BFF checks if the install request contains vector stores  (LlamaStackDistributionInstallRequest), and if present reads the gen-ai-aa-vector-stores ConfigMap and includes valid matching vector stores in the generated llamastack configuration.
+- [ ] LlamaStackDistributionInstallRequest to be updated to allow for vector stores to be passed
+- [ ] If the vector stores are not supplied, the LSD install will not look for configmap, and proceeds as normal with no vector stores — no error is raised.
 - [ ] If a vector store has a Secret reference, the credentials are resolved from the namespace-scoped Secret before use.
 - [ ] If a vector store is unreachable or its credentials are invalid or embedding model is unavailable, Playground creation fails with a clear, actionable error identifying the affected store.
 
