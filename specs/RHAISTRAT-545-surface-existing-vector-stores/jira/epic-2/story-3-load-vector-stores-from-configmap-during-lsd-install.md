@@ -18,7 +18,7 @@
 
 ## Jira Description
 
-As an AI Engineer, I want the external vector stores registered by my Platform Engineer to be automatically included when a new Playground is created, so that I can select them from the Knowledge Sources section without any manual configuration.
+As an AI Engineer, I want the external vector stores defined in a ConfigMap by my Platform Engineer to be automatically included when a new Playground is created, so that I can select them in the UI.
 
 This story updates the BFF Install phase (InstallLlamaStackDistribution and generateLlamaStackConfig functions) to check for the presence of the gen-ai-aa-vector-stores ConfigMap in the namespace. If the ConfigMap is found, all valid vector store entries are parsed from stores.yaml and included in the llamastack distribution configuration.
 
