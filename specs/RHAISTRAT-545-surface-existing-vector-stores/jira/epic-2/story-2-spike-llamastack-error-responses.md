@@ -12,15 +12,15 @@
 | Labels         | dashboard-crimson-scrum                                                                  |
 | Activity Type  | New Features                                                                             |
 | Target Version | rhoai-3.4                                                                                |
-| Epic Link      | [RHOAIENG-XXXXX — set once Epic is created in Jira]                                      |
+| Epic Link      | RHOAIENG-51472                                                                           |
 
 ---
 
 ## Jira Description
 
-As a developer implementing vector store validation in the BFF, I need to understand how llamastack behaves and what errors it returns when given invalid or misconfigured vector store definitions, so that validation logic in Stories 3, 4, and 5 is grounded in actual llamastack behaviour rather than assumptions.
+As a developer implementing vector store validation in the BFF, I need to understand how llamastack behaves and what errors it returns when given invalid or misconfigured vector store definitions, so that validation logic in Story 3 is grounded in actual llamastack behaviour rather than assumptions.
 
-Findings should be documented and used to inform the implementation of vector store validation (Stories 3–5).
+Findings should be documented and used to inform the implementation of vector store validation (Story 3).
 
 ## Acceptance Criteria
 - [ ] Test if llamastack perform connectivity checks at startup?

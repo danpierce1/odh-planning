@@ -22,7 +22,7 @@ As an AI Engineer, I want to see clear and actionable error messages when someth
 
 Two error scenarios are in scope:
 
-1. Playground creation failure: if a vector store misconfiguration causes the LSD install to fail (Epic 2, Story 4), the Playground UI should surface that error clearly rather than showing a generic failure.
+1. Playground creation failure: if a vector store misconfiguration causes the LSD install to fail (Epic 2, Story 3), the Playground UI should surface that error clearly rather than showing a generic failure.
 
 2. Unreachable vector store during chat: if a vector store that was successfully registered becomes unreachable during an active chat session, the user should see a clear error identifying the issue as a vector store connectivity problem, distinct from a model or general query error.
 
