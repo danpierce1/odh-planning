@@ -29,8 +29,7 @@ Implementation approach should be informed by the spike findings (Story 2).
 - [ ] During LSD install, the BFF checks for the gen-ai-aa-vector-stores ConfigMap in the target namespace.
 - [ ] If the ConfigMap is absent, LSD install proceeds as normal with no vector stores — no error is raised.
 - [ ] If a vector store has a Secret reference, the credentials are resolved from the namespace-scoped Secret before use.
-- [ ] If a vector store is unreachable or its credentials are invalid, Playground creation fails with a clear, actionable error identifying the affected store.
-- [ ] If a store's embedding model is unavailable, Playground creation fails with a clear explanation.
+- [ ] If a vector store is unreachable or its credentials are invalid or embedding model is unavailable, Playground creation fails with a clear, actionable error identifying the affected store.
 
 ## Notes
 

@@ -37,8 +37,7 @@ AI Engineer:
 ## Acceptance Criteria
 
 - [ ] BFF reads the gen-ai-aa-vector-stores ConfigMap during LSD install and includes valid vector stores in the generated llamastack configuration.
-- [ ] Vector stores with invalid or unreachable connections return a failure error to the UI.
-- [ ] Vector stores whose embedding model is not available are excluded from LSD registration and surfaced as greyed out in the UI with an explanatory message. **Needs confirmation**: an alternative approach of failing Playground creation entirely in this scenario is still under discussion.
+- [ ] Vector stores with invalid or unreachable connections or unavailable embedding model cause a failure with error returned to the UI.
 - [ ] ConfigMap schema supports all three MVP providers: PGVector, Qdrant, Milvus.
 - [ ] Credential references via Kubernetes Secrets are supported.
 

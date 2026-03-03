@@ -23,9 +23,9 @@ As a developer implementing vector store validation in the BFF, I need to unders
 Findings should be documented and used to inform the implementation of vector store validation (Stories 3–5).
 
 ## Acceptance Criteria
-- [ ] Does llamastack perform connectivity checks at startup?
-- [ ] if multiple vector stores have misconfiguration/issue, does llamastack raise each error in response or one at a time
-- [ ] What error format does llamastack return?
+- [ ] Test if llamastack perform connectivity checks at startup?
+- [ ] Test if multiple vector stores have misconfiguration/issue, does llamastack raise each error in response or one at a time
+- [ ] Test what error format does llamastack return?
 - [ ] Test llamastack behaviour when given a vector store whose required embedding model is not available.
 - [ ] Test llamastack behaviour when given an unreachable vector store endpoint.
 - [ ] Test llamastack behaviour when given a malformed or incomplete vector store configuration.
