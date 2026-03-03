@@ -18,18 +18,17 @@
 
 ## Jira Description
 
-As an AI Engineer, I want to select one or more external vector stores from the AAE page and include them when creating a new Playground, so that I can quickly launch a RAG-enabled Playground without having to configure knowledge sources after the fact.
+As an AI Engineer, I want to click Add to Playground from the AAE Vector Stores tab and configure a Playground with the selected vector store and its associated embedding model, so that I can quickly launch a RAG-enabled Playground without manual configuration.
 
-When a user clicks Add to Playground from the AAE Vector Stores tab, the existing Configure Playground modal opens. This modal is updated to include a Knowledge Sources section listing selectable external vector stores alongside the existing Available Models list. The user selects their desired models and vector stores, then confirms to create the Playground.
+When a user clicks Add to Playground for a vector store row, a modal opens showing: the embedding model ID (and name if available) tied to the vector store, whether that embedding model is already available in llamastack (if not, indicate it will be automatically registered), and the selected vector store collection. The user then clicks Configure to proceed, which triggers the LSD install with the vector store and embedding model registered.
 
-The selected vector stores are passed to the create Playground backend, which registers them during the LSD install phase (Epic 2). The gen-ai-aa-vector-stores ConfigMap is not modified by this flow — it is used only as a read-only reference for what is available to select.
+The gen-ai-aa-vector-stores ConfigMap is not modified by this flow — it is used only as a read-only reference.
 
 ## Acceptance Criteria
 
-- [ ] Clicking Add to Playground from the AAE Vector Stores tab opens the existing Configure Playground modal.
-- [ ] The Configure Playground modal is updated to include a Knowledge Sources section with a list of selectable external vector stores.
-- [ ] User can select from both Available Models and Knowledge Sources in the modal before creating the Playground.
-- [ ] Selected vector stores are passed to the create Playground backend and registered via the Epic 2 LSD install logic.
+- [ ] Clicking Add to Playground from the AAE Vector Stores tab opens a modal showing: the selected vector store collection, the associated embedding model ID and name (if available), and whether the embedding model is already available in llamastack.
+- [ ] If the embedding model is not yet available in llamastack, the modal indicates it will be automatically registered.
+- [ ] The user can proceed by clicking Configure, which triggers Playground creation with the vector store and embedding model registered via the Epic 2 LSD install logic.
 - [ ] The gen-ai-aa-vector-stores ConfigMap is not modified by this flow.
 
 ## Notes

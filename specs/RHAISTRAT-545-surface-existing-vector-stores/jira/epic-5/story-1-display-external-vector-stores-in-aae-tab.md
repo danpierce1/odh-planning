@@ -18,19 +18,20 @@
 
 ## Jira Description
 
-As an AI Engineer, I want to see all registered external vector stores listed in the AAE page under a Vector Stores tab, so that I can review their details and optionally decide to include in a new Playground.
+As an AI Engineer, I want to see all registered external vector stores listed in the AAE page under a Vector Stores tab, so that I can review their details and optionally add one to a Playground.
 
-When the feature flag is enabled (Epic 1), a Vector Stores tab is added to the AAE page. It lists all external vector stores from the gen-ai-aa-vector-stores ConfigMap with the following columns: Vector Store (name), Provider, Embedding Model, Domain, and Status.
+When the feature flag is enabled (Epic 1), a Vector Stores tab is added to the AAE page. It lists all external vector stores from the gen-ai-aa-vector-stores ConfigMap. The primary column is Collection, with additional columns for Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance Metric, Created, Endpoint, and Playground.
 
-Reference Figma: https://www.figma.com/design/0KwA2EuFmA48GAQAOyjbIb/3.4-Playground?node-id=1419-6335&t=u9oLDgOyt8i0NEwO-0
+Rows where the associated embedding model is not registered as an AI asset endpoint are shown as greyed out, with details on how to add the embedding model as an endpoint.
 
 ## Acceptance Criteria
 
 - [ ] A Vector Stores tab is added to the AAE page, visible only when the feature flag is enabled.
-- [ ] The tab lists all external vector stores from the ConfigMap with columns: Vector Store (name), Provider, Embedding Model, Domain, Status.
-- [ ] An Add to Playground action is available from this tab (behaviour implemented in Story 2).
+- [ ] The tab lists all external vector stores from the ConfigMap with columns: Collection, Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance Metric, Created, Endpoint, Playground.
+- [ ] Rows where the associated embedding model is not registered as an AI asset endpoint are shown as greyed out with an explanatory message on how to add the embedding model as an endpoint.
+- [ ] An Add to Playground action is available for non-greyed-out rows (behaviour implemented in Story 2).
 
 ## Notes
 
-- This epic is pending PM/Design review — implementation details may change.
+- This story is pending PM/Design review — implementation details may change.
 - Depends on Epic 1 (feature flag) and Epic 2 (BFF ConfigMap loading) being in place.
