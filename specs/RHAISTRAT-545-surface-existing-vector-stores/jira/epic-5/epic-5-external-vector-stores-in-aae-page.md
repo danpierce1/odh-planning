@@ -18,9 +18,9 @@
 
 ## Jira Description
 
-Similar to the existing Add a model flow in AAE, add support for viewing external vector stores in the AAE page and selecting one or more to be included when creating a new Playground via an Add to Playground link.
+Similar to the existing Add a model flow in AAE, add support for viewing external vector stores in an AAE page (under a vector stores tab) and selecting one or more to be included when configuring a Playground via an Add to Playground link.
 
-Engineers can view external vector stores in more detail and select them for inclusion when creating a new Playground.
+Engineers can view external vector stores in more detail and select them for inclusion when configuring a Playground.
 
 The gen-ai-aa-vector-stores ConfigMap is used as a read-only reference for what external vector stores can be viewed and selected. The ConfigMap is not modified by this flow — only Platform Engineers manage its contents.
 
@@ -31,14 +31,15 @@ The gen-ai-aa-vector-stores ConfigMap is used as a read-only reference for what 
 **Outcomes by Persona**
 
 AI Engineer:
-- Can view all registered external vector stores in the AAE page with key metadata (provider, embedding model, domain, status).
-- Can select one or more vector stores when creating a new Playground from AAE, using the same Configure Playground modal used for model selection.
+- Can view all external vector stores defined in the gen-ai-aa-vector-stores ConfigMap in the AAE page under vector stores tab. The primary column for the table should be Collection, and we should also have columns for Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance, metric, Created, Endpoint, Playground.
+- For 3.4, a user can click Add to Playground for a vector store collection if the associated embedding model is registered as an AI asset endpoint (if it's not we show the row as greyed out, with details on how to add the embedding model as an endpoint). In the modal that then opens, we show the embedding model id (and name if available) tied to the vector store, and whether it's available yet in llamastack (if not we indicate it will be automatically be registered in llamastack), and we show the vector store collection that the user selected. The user may then proceed with installing the vector store and embedding model in the playground by clicking the Configure button.
 
 ## Acceptance Criteria
 
-- [ ] External vector stores are visible in a Vector Stores tab in the AAE page (feature flag gated).
-- [ ] The Configure Playground modal is updated to include a Knowledge Sources section with selectable vector stores.
-- [ ] Selected vector stores are passed to the create Playground backend and registered via the Epic 2 LSD install logic.
+- [ ] External vector stores defined in the gen-ai-aa-vector-stores ConfigMap are visible in the AAE page under a Vector Stores tab, with columns for Collection, Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance, metric, Created, Endpoint, Playground
+- [ ] A user can click Add to Playground for a vector store collection if the associated embedding model is registered as an AI asset endpoint. If it's not, the row is shown as greyed out with details on how to add the embedding model as an endpoint.
+- [ ] In the modal that opens, the embedding model ID (and name if available) tied to the vector store is shown, along with whether it's available yet in llamastack (if not, indicate it will be automatically registered). The selected vector store collection is also shown.
+- [ ] The user can proceed with installing the vector store and embedding model in the Playground by clicking the Configure button.
 - [ ] The gen-ai-aa-vector-stores ConfigMap is not modified by this flow.
 
 ## Stories
