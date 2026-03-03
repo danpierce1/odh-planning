@@ -18,7 +18,7 @@
 
 ## Jira Description
 
-Ensure AI engineers see clear, actionable error messages when external vector stores cause problems — whether at Playground creation time due to misconfiguration, or during an active chat session when a vector store becomes unreachable. Errors must be distinguishable from model errors or general query failures so users can identify and report the issue to their Platform Engineer.
+Ensure AI engineers see clear, actionable error messages when we encounter failure to configure external vector stores, or other problems with vector stores — whether at Playground creation time due to misconfiguration, or during an active chat session when a vector store becomes unreachable. Errors should be distinguishable from model errors or general query failures so users can identify and report the issue to their Platform Engineer.
 
 **Outcomes by Persona**
 

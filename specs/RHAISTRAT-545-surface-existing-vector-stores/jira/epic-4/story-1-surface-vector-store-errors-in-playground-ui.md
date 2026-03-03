@@ -35,4 +35,4 @@ Two error scenarios are in scope:
 
 ## Notes
 
-- The error payload for Playground creation failures comes from Epic 2 Story 4 (BFF connectivity validation); this story is the UI rendering of that error.
+- Epic 2 should deal with handling and surfacing errors on BFF side, so this story is for ensuring the UI renders errors appropriately.
