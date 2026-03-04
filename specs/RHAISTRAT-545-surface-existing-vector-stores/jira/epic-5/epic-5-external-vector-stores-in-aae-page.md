@@ -22,7 +22,7 @@ Similar to the existing Add a model flow in AAE, add support for viewing externa
 
 Engineers can view external vector stores in more detail and select them for inclusion when installing a Playground (can be fresh install or replacing an existing playground, either way both go through the install endpoint, but the latter first runs a delete playground request).
 
-The gen-ai-aa-vector-stores ConfigMap is used as a read-only reference for what external vector stores can be viewed and selected. The ConfigMap is not modified by this flow — only Platform Engineers manage its contents.
+The gen-ai-aa-vector-stores ConfigMap is used as a read-only reference for what external vector stores can be viewed and selected (in future we will likely support the User to Register a vector store from the UI). The ConfigMap is not modified by this flow — only Platform Engineers manage its contents.
 
 **Note**: This epic is a late addition to this strat and has not yet been reviewed or approved by PM/Design. Details may change pending that review.
 
@@ -36,11 +36,11 @@ AI Engineer:
 
 ## Acceptance Criteria
 
-- [ ] External vector stores defined in the gen-ai-aa-vector-stores ConfigMap are visible in the AAE page under a Vector Stores tab, with columns for Collection, Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance, metric, Created, Endpoint, Playground
-- [ ] For 3.4, in order to add Vector stores to a playground, the user must use the Vector Stores tab under AAE page to select the vector stores for the playground.
+- [ ] External vector stores defined in the gen-ai-aa-vector-stores ConfigMap are visible in the AAE page under a Vector Stores tab, with columns for Collection, Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance, metric, Created, Endpoint, Playground. The existing BFF VectorStoresAAHandler endpoint in aaa_vectorstores_handler.go can be used to retrieve this list.
+- [ ] For 3.4, in order to add Vector store collections to a playground, the user must use the Vector Stores tab under AAE page to select the vector stores for the playground.
 - [ ] A user can click Add to Playground for a vector store collection if the associated embedding model is added as an AI asset endpoint. If it's not, the row is shown as greyed out with details on how to add the embedding model as an endpoint.
-- [ ] In the modal that opens, show the list of vector stores and associated embedding model next to each store. If an embedding model is not added to AI Asset endpoints again show the entire row as greyed out. If it is added but not registered, indicate that the backend will auto register it with llamastack.
-- [ ] The user can proceed with installing the vector stores and associated embedding models in the Playground by clicking the Configure button, which triggers Playground install (note we already have logic whereby if playground already exists, the UI first makes request to delete the existing playground) by making a request using the existing installLSD method call in ChatbotConfigurationModal.tsx, passing the vector store(s) and models in the request (to the LlamaStackDistributionInstallHandler endpoint).
+- [ ] In the modal that opens, show the list of vector store collections and associated embedding model next to each store. If an embedding model is not added to AI Asset endpoints again show the entire row as greyed out. If it is added but not registered, indicate that the backend will auto register it with llamastack.
+- [ ] The user can proceed with installing the vector store collections and associated embedding models in the Playground by clicking the Configure button, which triggers Playground install (note we already have logic whereby if playground already exists, the UI first makes request to delete the existing playground) by making a request using the existing installLSD method call in ChatbotConfigurationModal.tsx, passing the vector store(s) and models in the request (to the LlamaStackDistributionInstallHandler endpoint).
 - [ ] The gen-ai-aa-vector-stores ConfigMap is not modified by this flow.
 
 ## Stories

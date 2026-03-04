@@ -18,9 +18,9 @@
 
 ## Jira Description
 
-As an AI Engineer, I want to see all registered external vector stores listed in the AAE page under a Vector Stores tab, so that I can review their details and optionally add one to a Playground.
+As an AI Engineer, I want to see all registered external vector store collections listed in the AAE page under a Vector Stores tab, so that I can review their details and optionally add one to a Playground.
 
-When the feature flag is enabled (Epic 1), a Vector Stores tab is added to the AAE page. It lists all external vector stores from the gen-ai-aa-vector-stores ConfigMap. The primary column is Collection, with additional columns for Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance Metric, Created, Endpoint, and Playground.
+When the feature flag is enabled (Epic 1), a Vector Stores tab is added to the AAE page. It lists all external vector store collections from the gen-ai-aa-vector-stores ConfigMap using the existing BFF VectorStoresAAHandler endpoint in aaa_vectorstores_handler.go. The primary column is Collection, with additional columns for Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance Metric, Created, Endpoint, and Playground.
 
 Rows where the associated embedding model is not registered as an AI asset endpoint are shown as greyed out, with details on how to add the embedding model as an endpoint.
 
