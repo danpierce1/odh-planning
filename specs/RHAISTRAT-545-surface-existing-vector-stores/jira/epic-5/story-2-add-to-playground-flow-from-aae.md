@@ -36,5 +36,5 @@ The gen-ai-aa-vector-stores ConfigMap is not modified by this flow — it is use
 
 - This story is pending PM/Design review — implementation details may change.
 - **Needs clarification**: confirm if external vector store selection should also be included in the Update Configuration modal flow in playground (perhaps a stretch goal)
-- Depends on Story 1 (AAE Vector Stores tab) being in place.
-- Depends on Epic 2 (BFF LSD install) for the backend registration of the selected stores.
+- Depends on Story 1 (RHOAIENG-51780, AAE Vector Stores tab) being in place.
+- Depends on Epic 2 (RHOAIENG-51472, BFF LSD install) for the backend registration of the selected stores.

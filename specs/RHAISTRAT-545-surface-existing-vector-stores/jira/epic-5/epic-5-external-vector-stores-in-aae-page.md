@@ -47,5 +47,5 @@ AI Engineer:
 
 ## Stories
 
-- Story 1: Display External Vector Stores in the AAE Vector Stores Tab
-- Story 2: Add to Playground Flow — Select and Launch a Playground with Vector Stores from AAE
+- Story 1 (RHOAIENG-51780): Display External Vector Stores in the AAE Vector Stores Tab
+- Story 2 (RHOAIENG-51781): Add to Playground Flow — Select and Launch a Playground with Vector Stores from AAE

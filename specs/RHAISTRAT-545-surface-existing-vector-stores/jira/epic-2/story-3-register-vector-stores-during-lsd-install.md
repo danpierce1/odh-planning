@@ -35,5 +35,5 @@ Implementation approach should be informed by the spike findings (Story 2).
 
 ## Notes
 
-- Depends on Story 1 (ConfigMap schema) and Story 2 (spike findings) — although use discretion w.r.t timing of work (may be able to do in parallel).
-- Spike findings (Story 2) should help inform how we handle various issues.
+- Depends on Story 1 (RHOAIENG-51474, ConfigMap schema) and Story 2 (RHOAIENG-51769, spike findings) — although use discretion w.r.t timing of work (may be able to do in parallel).
+- Spike findings (Story 2, RHOAIENG-51769) should help inform how we handle various issues.

@@ -44,5 +44,5 @@ AI Engineer:
 
 ## Stories
 
-- Story 1: Add External Vector Stores Feature Flag to OdhDashboardConfig
-- Story 2: Document the External Vector Stores Feature Flag
+- Story 1 (RHOAIENG-51448): Add External Vector Stores Feature Flag to OdhDashboardConfig
+- Story 2 (RHOAIENG-51452): Document the External Vector Stores Feature Flag

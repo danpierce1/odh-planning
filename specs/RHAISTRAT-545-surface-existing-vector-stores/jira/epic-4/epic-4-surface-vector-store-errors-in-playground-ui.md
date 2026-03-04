@@ -36,4 +36,4 @@ AI Engineer:
 
 ## Stories
 
-- Story 1: Surface Vector Store Errors in the Playground UI
+- Story 1 (RHOAIENG-51778): Surface Vector Store Errors in the Playground UI

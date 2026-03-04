@@ -43,6 +43,6 @@ AI Engineer:
 
 ## Stories
 
-- Story 1: Define the gen-ai-aa-vector-stores ConfigMap Schema
-- Story 2: Spike — Investigate Llamastack Responses for Invalid Vector Store Configurations
-- Story 3: Register External Vector Stores During BFF LSD Install
+- Story 1 (RHOAIENG-51474): Define the gen-ai-aa-vector-stores ConfigMap Schema
+- Story 2 (RHOAIENG-51769): Spike — Investigate Llamastack Responses for Invalid Vector Store Configurations
+- Story 3 (RHOAIENG-51773): Register External Vector Stores During BFF LSD Install

@@ -22,7 +22,7 @@
 
 Enable AI engineers in the GenAI Playground to view and enable an external vector store for a chat session from the Knowledge tab. Engineers can rapidly prototype and evaluate RAG applications using enterprise-approved knowledge sources without writing code, managing connections, or understanding retrieval implementation details.
 
-External vector stores are only visible when the feature flag is enabled (Epic 1) and have been registered via the ConfigMap (Epic 2) and provided/installed in LSD.
+External vector stores are only visible when the feature flag is enabled (Epic 1, RHOAIENG-51445) and have been registered via the ConfigMap (Epic 2, RHOAIENG-51472) and provided/installed in LSD.
 
 **Outcomes by Persona**
 
@@ -40,4 +40,4 @@ AI Engineer:
 
 ## Stories
 
-- Story 1: Enable External Vector Stores in the Playground Knowledge Tab
+- Story 1 (RHOAIENG-51775): Enable External Vector Stores in the Playground Knowledge Tab

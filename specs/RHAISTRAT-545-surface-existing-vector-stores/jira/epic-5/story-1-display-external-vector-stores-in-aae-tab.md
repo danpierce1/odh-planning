@@ -35,4 +35,4 @@ Rows where the associated embedding model is not registered as an AI asset endpo
 ## Notes
 
 - This story is pending PM/Design review — implementation details may change.
-- Depends on Epic 1 (feature flag) and Epic 2 (BFF ConfigMap loading) being in place.
+- Depends on Epic 1 (RHOAIENG-51445, feature flag) and Epic 2 (RHOAIENG-51472, BFF ConfigMap loading) being in place.

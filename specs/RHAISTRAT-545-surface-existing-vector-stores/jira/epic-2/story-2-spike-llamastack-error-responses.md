@@ -19,9 +19,9 @@
 
 ## Jira Description
 
-As a developer implementing vector store validation in the BFF, I need to understand how llamastack behaves and what errors it returns when given invalid or misconfigured vector store definitions, so that validation logic in Story 3 is grounded in actual llamastack behaviour rather than assumptions.
+As a developer implementing vector store validation in the BFF, I need to understand how llamastack behaves and what errors it returns when given invalid or misconfigured vector store definitions, so that validation logic in Story 3 (RHOAIENG-51773) is grounded in actual llamastack behaviour rather than assumptions.
 
-Findings should be documented and used to inform the implementation of vector store validation (Story 3).
+Findings should be documented and used to inform the implementation of vector store validation (Story 3 (RHOAIENG-51773)).
 
 ## Acceptance Criteria
 - [ ] Test if llamastack perform connectivity checks at startup?
