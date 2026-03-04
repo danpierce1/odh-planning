@@ -12,7 +12,8 @@
 | Labels         | dashboard-crimson-scrum                                                                        |
 | Activity Type  | New Features                                                                                   |
 | Target Version | rhoai-3.4                                                                                      |
-| Epic Link      | [RHOAIENG-XXXXX — set once Epic is created in Jira]                                            |
+| Epic Link      | RHOAIENG-51774                                                                                 |
+| Jira Issue     | https://issues.redhat.com/browse/RHOAIENG-51775                                                |
 
 ---
 
@@ -34,7 +35,7 @@ When a new comparison pane is opened, the current vector store selection is repl
 - [ ] When a new comparison pane is opened, the current vector store selection is replicated to that pane by default.
 - [ ] After a pane is opened, its vector store selection is independent — the user can enable or disable on one pane without affecting others.
 - [ ] Retrieval implementation details (chunk size, embedding model name, similarity thresholds) are not shown to the user.
-- [ ] Regarding the external vector stores listed in the Playground Knowledge tab, we could optionally show stores which are not registered/available in LSD displayed as greyed out with an explanatory message
+- [ ] For 3.4, we can just show the vector stores which are registered/available in LSD in the dropdown (and not show any greyed out stores in this dropdown)
 
 ## Notes
 

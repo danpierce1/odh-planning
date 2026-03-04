@@ -738,8 +738,8 @@ When creating Jira issues from `.md` files under a spec's `jira/` folder, Claude
 **Creation rules for Epics:**
 - Use `jira_create_issue` with `issue_type: "Epic"`
 - Include `customfield_12319940` (Target Version) in `additional_fields`
-- To link an RHOAIENG epic to its parent RHAISTRAT strat issue, first try setting `customfield_12313140` (Parent Link) in `additional_fields` during creation. If that establishes the child relationship correctly, record `Parent Link` in the Jira Fields table of the epic `.md` file instead of using a post-creation link.
-- If `customfield_12313140` does not work, fall back to: after creation, add a "Relates to" link using `jira_create_issue_link` with `link_type: "Related"`, `inward_issue_key: <RHOAIENG epic>`, `outward_issue_key: <RHAISTRAT key>`
+- To link an RHOAIENG epic to its parent RHAISTRAT strat issue, set `customfield_12313140` (Parent Link) in `additional_fields` during creation — confirmed working. Record `Parent Link` in the Jira Fields table of the epic `.md` file.
+- Also add a "Relates to" link after creation using `jira_create_issue_link` with `link_type: "Related"`, `inward_issue_key: <RHOAIENG epic>`, `outward_issue_key: <RHAISTRAT key>`
 - Record the created Jira key in the local epic `.md` file
 
 **Creation rules for Stories:**
