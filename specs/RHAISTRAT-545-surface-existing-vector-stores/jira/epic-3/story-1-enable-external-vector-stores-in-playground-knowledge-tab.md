@@ -20,7 +20,7 @@
 
 As an AI Engineer, I want to see all external vector stores available in my namespace listed in the Playground Knowledge tab, be able to enable or disable one for my chat session, and have my selection carried over when I open additional comparison panes, so that I can easily experiment with RAG and compare model responses across panes using the same knowledge source.
 
-When the feature flag is enabled (Epic 1) and vector stores have been registered via the gen-ai-aa-vector-stores ConfigMap (Epic 2), the Knowledge tab surfaces those stores with their name, provider type, and description. Only one vector store can be active at a time per chat pane. Stores whose embedding model is not currently available are shown greyed out and cannot be enabled.
+When the feature flag is enabled (Epic 1) and vector stores have been registered via the gen-ai-aa-vector-stores ConfigMap (Epic 2), the Knowledge tab surfaces those stores with their name, provider type, and description. Only one vector store can be active at a time per chat pane (external or inline — both are treated the same).
 
 When a new comparison pane is opened, the current vector store selection is replicated to it by default. After that, each pane is independent — the user can enable or disable the vector store on any pane without affecting others.
 
