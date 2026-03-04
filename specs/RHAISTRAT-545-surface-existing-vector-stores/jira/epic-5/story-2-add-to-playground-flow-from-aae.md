@@ -12,7 +12,8 @@
 | Labels         | dashboard-crimson-scrum                                                                        |
 | Activity Type  | New Features                                                                                   |
 | Target Version | rhoai-3.4                                                                                      |
-| Epic Link      | [RHOAIENG-XXXXX — set once Epic is created in Jira]                                            |
+| Epic Link      | RHOAIENG-51779                                                                                 |
+| Jira Issue     | https://issues.redhat.com/browse/RHOAIENG-51781                                                |
 
 ---
 
