@@ -23,7 +23,7 @@ As an AI Engineer, I want to be able to select vector stores to be made availabl
 
 This story updates the BFF Install endpoint LlamaStackDistributionInstallHandler to allow for LlamaStackDistributionInstallRequest to include vector stores, which if supplied will allow the install logic to configure the vector stores as part of the playground install (and if needed, to register any associated embedding models which are not already registered). If the vector stores are included in request, the Install endpoint logic can retrieve the gen-ai-aa-vector-stores ConfigMap, and use it to include the supplied vector store entries from the ConfigMap into the llamastack distribution configuration (any issue with the config should fail the install).
 
-Implementation approach should be informed by the spike findings (Story 2).
+Implementation approach should be informed by the spike findings (Story 2, RHOAIENG-51769).
 
 ## Acceptance Criteria
 
