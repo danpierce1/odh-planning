@@ -13,6 +13,7 @@
 | Activity Type  | New Features                                                                         |
 | Target Version | rhoai-3.4                                                                            |
 | Epic Link      | RHOAIENG-51472                                                                       |
+| Jira Issue     | https://issues.redhat.com/browse/RHOAIENG-51773                                      |
 
 ---
 
@@ -20,7 +21,7 @@
 
 As an AI Engineer, I want to be able to select vector stores to be made available in a playground, this will be handled by a LlamaStackDistributionInstallRequest request to the BFF, with clear errors surfaced if any stores are misconfigured, unreachable, or missing a required embedding model.
 
-This story updates the BFF Install endpoint LlamaStackDistributionInstallHandler to allow for LlamaStackDistributionInstallRequest to include vector stores, which if supplied will allow the install logic to configure the vector stores as part of the playground install (and if needed, to register any associated embedding models which are not already registered). If the vector stores are included in request, the Install endpoint logic can retrieve the gen-ai-aa-vector-stores ConfigMap, and use it to include the supplied vector store entries from the ConfigMap into the llamastack distribution configuration (and issue with the config should fail the install).
+This story updates the BFF Install endpoint LlamaStackDistributionInstallHandler to allow for LlamaStackDistributionInstallRequest to include vector stores, which if supplied will allow the install logic to configure the vector stores as part of the playground install (and if needed, to register any associated embedding models which are not already registered). If the vector stores are included in request, the Install endpoint logic can retrieve the gen-ai-aa-vector-stores ConfigMap, and use it to include the supplied vector store entries from the ConfigMap into the llamastack distribution configuration (any issue with the config should fail the install).
 
 Implementation approach should be informed by the spike findings (Story 2).
 
