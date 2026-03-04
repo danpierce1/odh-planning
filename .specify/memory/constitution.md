@@ -1,6 +1,16 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version change: 3.1.0 → 3.1.1 (PATCH: Added Parent Link field to Jira creation rules)
+
+Modified principles:
+- Principle XIV: Jira Issue Creation from Spec Files
+  - Added customfield_12313140 (Parent Link) to field ID mappings
+  - Updated Epic creation rules: try Parent Link first for RHAISTRAT relationship; fall back to "Relates to" link if it does not work
+  - Added Parent Link row to Jira Fields table convention in epic .md files
+
+PREVIOUS SYNC IMPACT REPORT
+==================
 Version change: 3.0.0 → 3.1.0 (MINOR: Added Jira issue creation rules)
 
 Modified principles:
@@ -718,6 +728,7 @@ When creating Jira issues from `.md` files under a spec's `jira/` folder, Claude
 | Human-Readable Field | Jira API Field       | Format                             |
 |----------------------|----------------------|------------------------------------|
 | Epic Link            | customfield_12311140 | String: `"RHOAIENG-XXXXX"`         |
+| Parent Link          | customfield_12313140 | String: `"RHAISTRAT-XXX"` — links RHOAIENG epic to parent RHAISTRAT strat; try this first (see Epic creation rules below) |
 | Target Version       | customfield_12319940 | Array: `[{"name": "rhoai-3.4"}]`   |
 | Activity Type        | customfield_12320040 | Object: `{"id": "XXXXX"}` — known IDs: `52756` = Tech Debt & Quality, `52757` = New Features, `52758` = Learning & Enablement |
 | Priority             | priority             | Object: `{"name": "Major"}`        |
@@ -727,7 +738,8 @@ When creating Jira issues from `.md` files under a spec's `jira/` folder, Claude
 **Creation rules for Epics:**
 - Use `jira_create_issue` with `issue_type: "Epic"`
 - Include `customfield_12319940` (Target Version) in `additional_fields`
-- After creation, add a "Relates to" link to the parent RHAISTRAT issue using `jira_create_issue_link` with `link_type: "Related"`, `inward_issue_key: <RHOAIENG epic>`, `outward_issue_key: <RHAISTRAT key>`
+- To link an RHOAIENG epic to its parent RHAISTRAT strat issue, first try setting `customfield_12313140` (Parent Link) in `additional_fields` during creation. If that establishes the child relationship correctly, record `Parent Link` in the Jira Fields table of the epic `.md` file instead of using a post-creation link.
+- If `customfield_12313140` does not work, fall back to: after creation, add a "Relates to" link using `jira_create_issue_link` with `link_type: "Related"`, `inward_issue_key: <RHOAIENG epic>`, `outward_issue_key: <RHAISTRAT key>`
 - Record the created Jira key in the local epic `.md` file
 
 **Creation rules for Stories:**
@@ -822,4 +834,4 @@ This constitution supersedes all other development practices. Amendments require
 - MINOR version: New principles or materially expanded guidance
 - PATCH version: Clarifications, wording improvements, typo fixes
 
-**Version**: 3.1.0 | **Ratified**: 2025-12-19 | **Last Amended**: 2026-03-02
+**Version**: 3.1.1 | **Ratified**: 2025-12-19 | **Last Amended**: 2026-03-04

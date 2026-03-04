@@ -13,6 +13,7 @@
 | Activity Type  | New Features                                                                             |
 | Target Version | rhoai-3.4                                                                                |
 | Epic Link      | RHOAIENG-51472                                                                           |
+| Jira Issue     | https://issues.redhat.com/browse/RHOAIENG-51769                                          |
 
 ---
 
