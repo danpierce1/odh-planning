@@ -35,9 +35,10 @@ AI Engineer:
 ## Acceptance Criteria
 
 - [ ] Available/registered external vector stores are listed in the Playground Knowledge tab when the feature flag is enabled.
-- [ ] For MVP, the user can select one collection at a time via radio select (not multi-select checkboxes - that may be the flow post 3.4)
+- [ ] For MVP, the user can select one collection at a time via a radio select based table (not multi-select checkboxes - that may be the flow post 3.4), and the existing inline vector store option is listed as one row in this table.
 - [ ] User can enable and disable a single vector store per chat pane (they can only have either an inline or external active at one point, both are treated the same)
 - [ ] Vector store selection is replicated to new comparison panes by default; each pane can then be managed independently.
+- [ ] Update the View Code output to include the selected collection/vector store details, the embedding model used, relevant configuration for reproducing the query outside the playground (A spike may be needed to determine the exact format of the view code output for vector store + embedding model details.)
 
 ## Stories
 

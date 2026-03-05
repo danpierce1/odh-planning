@@ -29,8 +29,8 @@ When a new comparison pane is opened, the current vector store selection is repl
 
 - [ ] Available/registered external vector stores are listed in the Playground Knowledge tab only when the feature flag is enabled.
 - [ ] Each store entry displays its name, provider type (PGVector, Qdrant, Milvus), and description where provided.
-- [ ] For MVP, the user can select one collection at a time via radio select (not multi-select checkboxes - that may be the flow post 3.4)
-- [ ] User can enable an external vector store with a single click; only one vector store can be active at a time per chat pane (external or inline).
+- [ ] For MVP, the user can select one collection at a time via a radio select based table (not multi-select checkboxes - that may be the flow post 3.4), and the existing inline vector store option is listed as one row in this table.
+- [ ] User can enable an external vector store with a single click; only one vector store can be active at a time per chat pane (external or inline — both appear as rows in the same table).
 - [ ] User can disable the active vector store mid-session, reverting to non-RAG behaviour.
 - [ ] The enabled vector store is stored in the chat session state and used for retrieval on subsequent messages.
 - [ ] When a new comparison pane is opened, the current vector store selection is replicated to that pane by default.
