@@ -43,3 +43,4 @@ AI Engineer:
 ## Stories
 
 - Story 1 (RHOAIENG-51775): Enable External Vector Stores in the Playground Knowledge Tab
+- Story 2 (RHOAIENG-52021): Update View Code Output to Include Vector Store and Embedding Model Details
