@@ -29,17 +29,17 @@ The gen-ai-aa-vector-stores ConfigMap is not modified by this flow — it is use
 
 - [ ] The Configure Playground modal can be accessed via an Add to Playground link from either the Models tab or the Vector Stores tab in the AAE page.
 - [ ] Page 1 of the modal shows the list of available models. When the user selects a model row, a Model Type dropdown appears allowing them to choose Inferencing/LLM or Embedding. The user can select one or more models. Buttons at the bottom of Page 1 are "Next select collections" and "Cancel".
-- [ ] Page 2 of the modal shows the vector store collections available based on the embedding model(s) selected on Page 1. Buttons at the bottom of Page 2 are "Back to models", "Configure", and "Cancel".
-- [ ] On Page 2, rows where the associated embedding model is not added to AI Asset endpoints are shown as greyed out. If an embedding model is added but not yet registered with llamastack, the row indicates it will be auto-registered by the backend.
-- [ ] Any vector stores or models that have been registered previously in the playground are already pre-selected. The user can multiselect/bulk select collections.
+- [ ] On Page 2, we show vector store collections for which there is an embedding model available (whether just added as an AI asset endpoint, or also registered in llamastack). Buttons at the bottom of Page 2 are "Back to models", "Configure", and "Cancel".
+- [ ] Any vector stores or models that have been registered previously in the playground are already pre-selected.
+- [ ] If the user selects additional vector store collections in page 2, we can auto select the associated embedding models in page 1.
+- [ ] When determining which embedding models have been added as AI Asset endpoints, the UI or API will need to correlate the embedding model IDs from the gen-ai-aa-vector-stores ConfigMap against model ids retrieved from the AAE endpoint, but note that these IDs may not include the full model id with provider prefix (and this can cause a problem for finding the correct id - for instance in a scenario where multiple of the same models are added, just from different sources, such as maas and namespace models). However the model ids registered in llamastack config map do include the provider prefix (so for example the ID there they would look like "vllm-inference-1/qen003b" rather than just "qen003b"), so they may need to be referenced if correlating IDs (Nick has mentioned potentially adding metadata to the models that would indicate their source, which could also provide an alternative for correlating IDs in the case where multiple different models have the same ID).
 - [ ] Clicking Configure on Page 2 triggers the LSD install using the existing installLSD method call in ChatbotConfigurationModal.tsx, passing the selected vector store(s) and models in the request (to the LlamaStackDistributionInstallHandler endpoint). If a playground already exists, the UI first makes a request to delete it before installing.
 - [ ] The Update Configuration modal, accessible from the dropdown within the playground, follows the same two-page flow but pre-selects any models and vector stores currently configured in the playground. The action button on Page 2 shows "Update" instead of "Configure".
 - [ ] The Create Playground modal, shown when a user visits the playground page and no playground exists in the namespace, follows the same two-page flow as the Configure Playground modal but with no pre-selected models or vector stores.
-- [ ] The gen-ai-aa-vector-stores ConfigMap is not modified by this flow.
+- [ ] The gen-ai-aa-vector-stores ConfigMap is not modified by any of these flows.
 
 ## Notes
 
 - This story is pending PM/Design review — implementation details may change.
-- **Needs clarification**: confirm if external vector store selection should also be included in the Update Configuration modal flow in playground (perhaps a stretch goal)
 - Depends on Story 1 (RHOAIENG-51780, AAE Vector Stores tab) being in place.
 - Depends on Epic 2 (RHOAIENG-51472, BFF LSD install) for the backend registration of the selected stores.
