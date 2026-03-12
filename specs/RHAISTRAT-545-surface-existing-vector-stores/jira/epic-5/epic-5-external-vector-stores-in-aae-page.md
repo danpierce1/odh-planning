@@ -26,9 +26,9 @@ Engineers can view external vector stores in more detail and select them for inc
 
 The gen-ai-aa-vector-stores ConfigMap is used as a read-only reference for what external vector stores can be viewed and selected (in future we will likely support the User to Register a vector store from the UI). The ConfigMap is not modified by this flow — only Platform Engineers manage its contents.
 
-**Note**: This epic is a late addition to this strat and has not yet been reviewed or approved by PM/Design. Details may change pending that review.
+The latest designs are at https://rhoai-promptflow-47b706.pages.redhat.com/gen-ai-studio/asset-endpoints
 
-**Needs clarification**: confirm if external vector store selection should also be included in the Update Configuration modal flow in playground.
+**Note**: This epic is a late addition to this strat and has not yet been reviewed or approved by PM/Design. Details may change pending that review.
 
 **Outcomes by Persona**
 
@@ -38,12 +38,15 @@ AI Engineer:
 
 ## Acceptance Criteria
 
-- [ ] External vector stores defined in the gen-ai-aa-vector-stores ConfigMap are visible in the AAE page under a Vector Stores tab, with columns for Collection, Provider, Embedding Model ID/Name, Domain, Status, Dimensions, Distance, metric, Created, Endpoint, Playground. The existing BFF VectorStoresAAHandler endpoint in aaa_vectorstores_handler.go can be used to retrieve this list.
-- [ ] For 3.4, in order to add Vector store collections to a playground, the user must use the Vector Stores tab under AAE page to select the vector stores for the playground.
-- [ ] A user can click Add to Playground for a vector store collection if the associated embedding model is added as an AI asset endpoint. If it's not, the row is shown as greyed out with details on how to add the embedding model as an endpoint.
-- [ ] In the modal that opens, show the list of vector store collections and associated embedding model next to each store. If an embedding model is not added to AI Asset endpoints again show the entire row as greyed out. If it is added but not registered, indicate that the backend will auto register it with llamastack. Any vector stores or models that have been registered previously in the playground are already selected. The user can multiselect/bulk select collections from this step.
-- [ ] The user can proceed with installing the vector store collections and associated embedding models in the Playground by clicking the Configure button, which triggers Playground install (note we already have logic whereby if playground already exists, the UI first makes request to delete the existing playground) by making a request using the existing installLSD method call in ChatbotConfigurationModal.tsx, passing the vector store(s) and models in the request (to the LlamaStackDistributionInstallHandler endpoint).
+- [ ] External vector stores defined in the gen-ai-aa-vector-stores ConfigMap are visible in the AAE page under a Vector Stores tab table, with columns for Vector store collection, Type, Embedding Model, Created, Dimensions, Distance metric, Playground. The existing BFF VectorStoresAAHandler endpoint in aaa_vectorstores_handler.go can be used to retrieve this list.
+- [ ] For 3.4, in order to add Vector store collections to a playground, the user can access the Configure Playground modal (via an Add to Playground link) either from the Models tab or from the Vector Stores tab, under AAE page.
+- [ ] A user can click Add to Playground for a vector store collection in the Vector Stores main table if the associated embedding model is added as an AI asset endpoint. If it's not, the row is shown as greyed out with details on how to add the embedding model as an endpoint.
+- [ ] The Configure Playground modal will contain two pages - the first page of the modal will show the Models that can be selected, and the second page will show the Vector Store collections. In the first page of the modal we must allow the user to select model(s), and for a given model they can select between a Model Type of Inferencing/LLM or Embedding (the selection dropdown shows when they select a row). The user can then select the models they want, and click to open the second page of the modal which will show the Vector stores that can be selected, and the options available there will depend on which embedding Model(s) the user has selected in the first page. When on the first page, there will be buttons at bottom "Next select collections" and "Cancel", and second page the buttons at bottom will include "Back to models", "Configure", and "Cancel".
+- [ ] If an embedding model is not added to AI Asset endpoints, both in the main Vector Stores table and in the table shown in the Configure Playground modal, we can show the entire row as greyed out. If it is added but not registered, indicate that the backend will auto register it with llamastack. Any vector stores or models that have been registered previously in the playground are already selected. The user can multiselect/bulk select collections from this step.
+- [ ] The user can proceed with installing the models and vector store collections selected in the Playground by clicking the Configure button on the second page of the modal, which triggers Playground install (note we already have logic whereby if playground already exists, the UI first makes request to delete the existing playground) by making a request using the existing installLSD method call in ChatbotConfigurationModal.tsx, passing the vector store(s) and models in the request (to the LlamaStackDistributionInstallHandler endpoint).
 - [ ] The gen-ai-aa-vector-stores ConfigMap is not modified by this flow.
+- [ ] For the Update Configuration modal that be accessed from the dropdown within playground, ensure that when it's opened we pass/preselect any models or vector stores currently in the playground, and at bottom of modal can show Update instead of Configure.
+- [ ] For the Create Playground modal that a user can open if they visit the playground page and they haven't yet created a playground in the namespace, this should look the same as the Configure Playground modal accessed from AAE page, only we don't pass have any preselected models or vector stores.
 
 ## Stories
 

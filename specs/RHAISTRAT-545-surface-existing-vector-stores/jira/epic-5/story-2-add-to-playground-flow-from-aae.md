@@ -19,18 +19,22 @@
 
 ## Jira Description
 
-As an AI Engineer, I want to click Add to Playground from the AAE Vector Stores tab and configure a Playground with the selected vector store(s) and associated embedding model(s), so that I can quickly launch a RAG-enabled Playground without manual configuration.
+As an AI Engineer, I want to open the Configure Playground modal from either the Models tab or the Vector Stores tab in the AAE page, so that I can select models and vector store collections and launch a RAG-enabled Playground without manual configuration.
 
-When a user clicks Add to Playground for a vector store row, a modal opens showing the list of vector store collections and associated embedding model next to each store. If an embedding model is not added to AI Asset endpoints show the entire row as greyed out. If it is added but not registered, indicate that the backend will auto register it with llamastack. The user then clicks Configure to proceed, which triggers the LSD install with the vector store(s) and models passed.
+The Configure Playground modal is a two-page wizard. Page 1 shows the available models — the user selects one or more, and for each selected model they can set the Model Type (Inferencing/LLM or Embedding) via a dropdown that appears on row selection. Clicking "Next select collections" advances to Page 2, which shows the vector store collections available based on the embedding model(s) selected on Page 1. The user can multiselect/bulk select collections; previously registered vector stores and models are pre-selected. Rows where the associated embedding model is not in AI Asset endpoints are shown as greyed out; if the embedding model is added but not yet registered with llamastack, the UI indicates it will be auto-registered. Clicking "Configure" on Page 2 triggers the LSD install.
 
 The gen-ai-aa-vector-stores ConfigMap is not modified by this flow — it is used only as a read-only reference.
 
 ## Acceptance Criteria
 
-- [ ] Clicking Add to Playground from the AAE Vector Stores tab opens a modal that shows the list of vector store collections and associated embedding model next to each store. If an embedding model is not added to AI Asset endpoints show the entire row as greyed out. If it is added but not registered, indicate that the backend will auto register it with llamastack. The user then clicks Configure to proceed, which triggers the LSD install with the vector store collection(s) and models passed.
-- [ ] Any vector stores or models that have been registered previously in the playground are already selected. The user can multiselect/bulk select collections from this step.
-- [ ] If the embedding model is not yet available in llamastack, the modal indicates it will be automatically registered.
-- [ ] The user can proceed by clicking Configure, which triggers the LSD install, using the existing installLSD method call in ChatbotConfigurationModal.tsx, passing the vector store(s) and models in the request (to the LlamaStackDistributionInstallHandler endpoint).
+- [ ] The Configure Playground modal can be accessed via an Add to Playground link from either the Models tab or the Vector Stores tab in the AAE page.
+- [ ] Page 1 of the modal shows the list of available models. When the user selects a model row, a Model Type dropdown appears allowing them to choose Inferencing/LLM or Embedding. The user can select one or more models. Buttons at the bottom of Page 1 are "Next select collections" and "Cancel".
+- [ ] Page 2 of the modal shows the vector store collections available based on the embedding model(s) selected on Page 1. Buttons at the bottom of Page 2 are "Back to models", "Configure", and "Cancel".
+- [ ] On Page 2, rows where the associated embedding model is not added to AI Asset endpoints are shown as greyed out. If an embedding model is added but not yet registered with llamastack, the row indicates it will be auto-registered by the backend.
+- [ ] Any vector stores or models that have been registered previously in the playground are already pre-selected. The user can multiselect/bulk select collections.
+- [ ] Clicking Configure on Page 2 triggers the LSD install using the existing installLSD method call in ChatbotConfigurationModal.tsx, passing the selected vector store(s) and models in the request (to the LlamaStackDistributionInstallHandler endpoint). If a playground already exists, the UI first makes a request to delete it before installing.
+- [ ] The Update Configuration modal, accessible from the dropdown within the playground, follows the same two-page flow but pre-selects any models and vector stores currently configured in the playground. The action button on Page 2 shows "Update" instead of "Configure".
+- [ ] The Create Playground modal, shown when a user visits the playground page and no playground exists in the namespace, follows the same two-page flow as the Configure Playground modal but with no pre-selected models or vector stores.
 - [ ] The gen-ai-aa-vector-stores ConfigMap is not modified by this flow.
 
 ## Notes
