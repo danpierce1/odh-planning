@@ -20,7 +20,7 @@
 
 ## Jira Description
 
-Similar to the existing Add a model flow in AAE, add support for viewing external vector stores in an AAE page (under a vector stores tab) and selecting one or more to be included when configuring a Playground via an Add to Playground link.
+Similar to the existing Add a model flow in AAE, add support for viewing external vector stores in an AAE page (under a vector stores tab) and selecting one or more to be included from the Configure Playground modal (which will also be updated).
 
 Engineers can view external vector stores in more detail and select them for inclusion when installing a Playground (can be fresh install or replacing an existing playground, either way both go through the install endpoint, but the latter first runs a delete playground request).
 
