@@ -26,6 +26,8 @@ Engineers can view external vector stores in more detail and select them for inc
 
 The gen-ai-aa-vector-stores ConfigMap is used as a read-only reference for what external vector stores can be viewed and selected (in future we will likely support the User to Register a vector store from the UI). The ConfigMap is not modified by this flow — only Platform Engineers manage its contents.
 
+The gen-ai-aa-vector-stores ConfigMap schema is at https://github.com/jharan1/odh-spikes/blob/main/spikes/RHOAIENG-51769-external-vector-stores/gen-ai-aa-vector-stores-schema.yaml 
+
 The latest designs are at https://rhoai-promptflow-47b706.pages.redhat.com/gen-ai-studio/asset-endpoints
 
 **Note**: This epic is a late addition to this strat and has not yet been reviewed or approved by PM/Design. Details may change pending that review.
