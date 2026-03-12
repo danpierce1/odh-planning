@@ -1,12 +1,12 @@
-# Epic: Add External Vector Stores to AI Asset Endpoints (AAE) Page
+# Epic: Add External Vector Stores to AI Asset Endpoints (AAE) Page and update Configure Playground modal
 
 ## Jira Fields
 
 | Field          | Value                                                                              |
 |----------------|------------------------------------------------------------------------------------|
 | Issue Type     | Epic                                                                               |
-| Summary        | Add External Vector Stores to AI Asset Endpoints (AAE) Page                        |
-| Epic Name      | Add External Vector Stores to AI Asset Endpoints (AAE) Page                        |
+| Summary        | Add External Vector Stores to AI Asset Endpoints (AAE) Page...                     |
+| Epic Name      | Add External Vector Stores to AI Asset Endpoints (AAE) Page...                     |
 | Priority       | Major                                                                              |
 | Project        | RHOAIENG                                                                           |
 | Components     | AI Core Dashboard, Gen AI Studio                                                   |
