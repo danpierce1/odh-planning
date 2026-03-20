@@ -36,7 +36,7 @@ AI Engineer:
 
 ## Acceptance Criteria
 
-- [ ] When the user clicks Add to Playground and proceeds with selection of vector stores in the Vector stores Configuration modal in UI, the UI makes a request including the vector stores via LlamaStackDistributionInstallRequest request, the BFF must then check for vector stores in the LlamaStackDistributionInstallRequest request and for each vector store, it must validate vector store details, check if the associated embedding model is registered in llamastack config (if not it must auto register the embedding model(s) in the llamastack config), and register the vector store(s) in the llamastack config.
+- [ ] When the user clicks Add to Playground and proceeds with selection of vector stores in the Vector stores Configuration modal in UI, the UI makes a request including the vector stores via LlamaStackDistributionInstallRequest request, the BFF must then check for vector stores in the LlamaStackDistributionInstallRequest request and for each vector store, it must validate vector store details, check if the associated embedding model is supplied in the Models field, and prepare the vector stores for the llamastack config.
 - [ ] allow any valid fields in the configmap to be mapped into the provided/registered entries in the llamastack config (docs include reference to some fields at pgvector, qdrant, milvus)
 - [ ] carry out validation and surface errors accordingly (as informed by spike carried out in https://github.com/jharan1/odh-spikes/tree/main/spikes/RHOAIENG-51769-external-vector-stores)
 - [ ] ConfigMap schema supports all three MVP providers: PGVector, Qdrant, Milvus.
