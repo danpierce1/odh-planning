@@ -27,7 +27,7 @@ This is the foundational backend work that makes external vector stores availabl
 
 Platform Engineer:
 - Can register existing vector databases (PGVector, Qdrant, Milvus) by creating a ConfigMap in the namespace.
-- Can provide metadata (description, owner, domain) so users understand data provenance.
+- Can provide metadata (description) so users understand data provenance. Note: owner and domain tags have been removed from this spec and will not be supported in the initial release — support may be added in a future iteration.
 - Knows that ConfigMap updates require a llamastack distribution restart to take effect.
 
 AI Engineer:
