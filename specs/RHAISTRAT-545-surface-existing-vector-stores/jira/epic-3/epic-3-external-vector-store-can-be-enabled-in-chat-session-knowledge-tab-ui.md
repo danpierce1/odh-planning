@@ -27,14 +27,14 @@ External vector stores are only visible when the feature flag is enabled (Epic 1
 **Outcomes by Persona**
 
 AI Engineer:
-- Can see all available/installed external vector stores in the Knowledge tab
+- Can see all external vector stores registered/installed in the namespace llamastack in the Knowledge tab
 - Can enable a vector store for a chat session with a single click and disable it mid-session.
 - Can compare model responses with and without a vector store by toggling enablement.
 - When a new comparison pane is opened, the current vector store selection is replicated to it by default; each pane can then be managed independently.
 
 ## Acceptance Criteria
 
-- [ ] Available/registered external vector stores are listed in the Playground Knowledge tab when the feature flag is enabled.
+- [ ] external vector stores registered/installed in the namespace llamastack are listed in the Playground Knowledge tab when the feature flag is enabled.
 - [ ] For MVP, the user can select one collection at a time via a radio select based table (not multi-select checkboxes - that may be the flow post 3.4), and the existing inline vector store option is listed as one row in this table.
 - [ ] User can enable and disable a single vector store per chat pane (they can only have either an inline or external active at one point, both are treated the same)
 - [ ] Vector store selection is replicated to new comparison panes by default; each pane can then be managed independently.
