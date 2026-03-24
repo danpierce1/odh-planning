@@ -28,15 +28,16 @@ When a new comparison pane is opened, the current vector store selection is repl
 ## Acceptance Criteria
 
 - [ ] Available/registered external vector stores are listed in the Playground Knowledge tab only when the feature flag is enabled.
-- [ ] Each store entry displays its name, provider type (PGVector, Qdrant, Milvus), and description where provided.
-- [ ] For MVP, the user can select one collection at a time via a radio select based table (not multi-select checkboxes - that may be the flow post 3.4), and the existing inline vector store option is listed as one row in this table.
+- [ ] Each store entry displays its name and description if provided.
+- [ ] On open of the knowledge tab, the user will see two radio options, "Use uploaded documents" (with tooltip "Upload and use your own files as grounding knowledge. Files are chunked, embedded, and stored in a playground-local database.") and "Use an existing vector store" (with tooltip "Connect to a registered external vector store collection to provide the model with custom knowledge and context.")
+- [ ] If user clicks the first radio button "Use uploaded documents", we show the existing "Drag and drop or upload files" section that's there today in Knowledge tab.
+- [ ] If user clicks the second radio button "Use an existing vector store", i) if there are no external vector stores registered in llamastack, we show "No collections configured" header and "To use a vector store, go to AI asset endpoints and add a collection to the playground." message, along with "Go to AI asset endpoints" link, ii) if there are vector stores registered in llamastack (essentially 'registered' status), show a dropdown menu of vector store items, with each row displaying the Vector store name and description if provided
 - [ ] User can enable an external vector store with a single click; only one vector store can be active at a time per chat pane (external or inline — both appear as rows in the same table).
 - [ ] User can disable the active vector store mid-session, reverting to non-RAG behaviour.
 - [ ] The enabled vector store is stored in the chat session state and used for retrieval on subsequent messages.
 - [ ] When a new comparison pane is opened, the current vector store selection is replicated to that pane by default.
 - [ ] After a pane is opened, its vector store selection is independent — the user can enable or disable on one pane without affecting others.
 - [ ] Retrieval implementation details (chunk size, embedding model name, similarity thresholds) are not shown to the user.
-- [ ] For 3.4, we can just show the vector stores which are registered/available in LSD in the dropdown (and not show any greyed out stores in this dropdown)
 
 ## Notes
 
